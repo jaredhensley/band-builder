@@ -13,6 +13,15 @@ angular.module('myApp').controller('userCtrl', function ($scope, MainService) {
     newGroup.admin = $scope.user._id;
     MainService.createGroup(newGroup).then(function (result) {
       console.log('this is result from creating group', result);
+      $scope.getUser($scope.user_id);
+      $scope.getGroups();
+    });
+  }
+
+  $scope.getGroups = function () {
+    MainService.getGroups().then(function (result) {
+      console.log(result);
+      $scope.groups = result;
     });
   }
 

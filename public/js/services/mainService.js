@@ -39,6 +39,13 @@ angular.module('myApp').service('MainService', function ($http) {
       method: 'POST',
       url: '/api/groups/',
       data: newGroup
+    })
+  }
+
+  this.getGroups = function () {
+    return $http({
+      method: 'GET',
+      url: '/api/groups/'
     });
   }
 
