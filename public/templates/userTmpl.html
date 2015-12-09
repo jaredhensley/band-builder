@@ -2,9 +2,13 @@
   id: {{user._id}}
   <br> username:{{user.username}}
   <br> email: {{user.email}}
-  <a ui-sref="editUser({id: user._id})">Edit Info</a>
-
-  <button ng-click="showGroupCreate = !showUserEdit">Toggle Group Creation</button>
+  <br> bio: {{user.bio}}
+  <br> skill: {{user.skill}}
+  <br> genres: {{user.genres}}
+  <br> groups: {{user.groups}}
+  <br>
+  <div><a ui-sref="editUser({id: user._id})">Edit Info</a></div>
+  <button ng-click="toggleGroupCreate()">Toggle Group Creation</button>
   <form ng-show="showGroupCreate" ng-submit="createGroup(newGroup)">
     <select name="" id="" ng-model="newGroup.public">
       <option value="true">Public</option>

@@ -1,7 +1,6 @@
 angular.module('myApp').service('MainService', function ($http) {
 
   this.registerUser = function (user) {
-
     return $http({
       method: 'POST',
       url: 'http://localhost:9001/api/users',
@@ -16,7 +15,7 @@ angular.module('myApp').service('MainService', function ($http) {
       data: user
     }).then(function (user) {
       return user;
-    })
+    });
   }
 
   this.editUser = function (userID, userEdit) {
@@ -24,7 +23,15 @@ angular.module('myApp').service('MainService', function ($http) {
       method: 'PUT',
       url: '/api/users/' + userID,
       data: userEdit
-    })
+    });
+  }
+
+  this.createGroup = function (newGroup) {
+    return $http({
+      method: 'POST',
+      url: '/api/groups/',
+      data: newGroup
+    });
   }
 
 });
