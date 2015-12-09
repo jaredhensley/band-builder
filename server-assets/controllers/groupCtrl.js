@@ -1,18 +1,41 @@
 var Group = require('../models/group');
+var User = require('../models/user');
+var geocoder = require('../node-geosearch');
 
 module.exports = {
 
+  // creates a new group from admin account
   addGroup: function (req, res) {
+
+    //handles req.body before save
     req.body.users = [req.body.admin];
-    var group = new Group(req.body);
-    group.save().then(function (group) {
-      console.log(group);
-      res.status(201).send(group);
+    geocoder.geocode(req.body.location, function (err, results) {
+      req.body.location = {
+        lat: results[0].latitude,
+        lng: results[0].longitude,
+        city: results[0].city,
+        zipcode: results[0].zipcode,
+        address: results[0].formattedAddress
+      };
+
+      // make a new group based on req.body
+      var group = new Group(req.body);
+      var newGroup;
+      group.save().then(function (theNewGroup) {
+        newGroup = theNewGroup;
+        return User.findById(req.body.admin).exec();
+      }).then(function (user) {
+        user.groups.push(newGroup._id);
+        return user.save();
+      }).then(function (newUser) {
+        res.status(201).send(group);
+      }).then(null, function (err) {
+        return res.status(500).send(err);
+      });
     });
-    console.log('test');
-    res.status(200).send(group);
   },
 
+  //edit existing group from admin account
   editGroup: function (req, res) {
     Group.findOneAndUpdate({
       _id: req.params.id

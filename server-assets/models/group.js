@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
   public: Boolean,
-  location: String,
+  location: Object,
   users: [{
     type: String,
     ref: 'User'
