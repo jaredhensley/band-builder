@@ -1,0 +1,26 @@
+<div>
+  id: {{user._id}}
+  <br> username:{{user.username}}
+  <br> email: {{user.email}}
+  <a ui-sref="editUser({id: user._id})">Edit Info</a>
+
+  <button ng-click="showGroupCreate = !showUserEdit">Toggle Group Creation</button>
+  <form ng-show="showGroupCreate" ng-submit="createGroup(newGroup)">
+    <select name="" id="" ng-model="newGroup.public">
+      <option value="true">Public</option>
+      <option value="false">Private</option>
+    </select>
+    <br>
+    <input type="text" ng-model="newGroup.location" placeholder="group location">
+    <br>
+    <input type="text" ng-model="newGroup.users" placeholder="group members">
+    <br>
+    <input type="text" ng-model="newGroup.admin" placeholder="group admin">
+    <br>
+    <input type="text" ng-model="newGroup.genre" placeholder="music genre">
+    <br>
+    <input type="text" ng-model="newGroup.needs" placeholder="group needs">
+    <br>
+    <button type="submit">Create Group</button>
+  </form>
+</div>

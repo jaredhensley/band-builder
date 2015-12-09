@@ -18,6 +18,9 @@ module.exports = {
     }).exec().then(function (user) {
       console.log(user);
       res.status(200).send(user);
+    }, function (err) {
+      console.log(err);
+      res.status(500).send(err);
     });
   },
 
