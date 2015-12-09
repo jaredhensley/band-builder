@@ -1,5 +1,8 @@
 angular.module('myApp').service('MainService', function ($http) {
 
+  // user CRUDS
+
+  // user POST
   this.registerUser = function (user) {
     return $http({
       method: 'POST',
@@ -8,6 +11,7 @@ angular.module('myApp').service('MainService', function ($http) {
     });
   }
 
+  // user GET
   this.getUser = function (user) {
     return $http({
       method: 'GET',
@@ -18,6 +22,7 @@ angular.module('myApp').service('MainService', function ($http) {
     });
   }
 
+  // user PUT
   this.editUser = function (userID, userEdit) {
     return $http({
       method: 'PUT',
@@ -26,6 +31,9 @@ angular.module('myApp').service('MainService', function ($http) {
     });
   }
 
+  // group CRUDS
+
+  // group POST
   this.createGroup = function (newGroup) {
     return $http({
       method: 'POST',

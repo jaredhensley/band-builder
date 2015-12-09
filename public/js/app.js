@@ -30,6 +30,7 @@ angular.module('myApp', ['ui.router'])
       templateUrl: '../templates/editUserTmpl.html'
         /*controller: 'signupCtrl'*/
     })
+    // todo  
     .state('editGroup', {
       url: '/editGroup',
       templateUrl: '../templates/editUserGroup.html'
