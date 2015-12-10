@@ -15,7 +15,7 @@ module.exports = {
   getUser: function (req, res) {
     User.find({
       _id: req.params.id
-    }).exec().then(function (user) {
+    }).populate('groups').exec().then(function (user) {
       console.log(user);
       res.status(200).send(user);
     }, function (err) {

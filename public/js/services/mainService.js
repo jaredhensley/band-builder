@@ -42,11 +42,11 @@ angular.module('myApp').service('MainService', function ($http) {
     })
   }
 
-  this.getGroups = function () {
-    return $http({
-      method: 'GET',
-      url: '/api/groups/'
-    });
-  }
+  /* this.getGroups = function () {
+     return $http({
+       method: 'GET',
+       url: '/api/groups/'
+     });
+   }*/
 
 });

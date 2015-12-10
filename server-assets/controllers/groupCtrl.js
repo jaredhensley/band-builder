@@ -66,6 +66,7 @@ module.exports = {
     });
   },
 
+
   deleteGroup: function (req, res) {
     Group.remove({
       _id: req.params.id

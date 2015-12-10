@@ -26,8 +26,8 @@ app.delete('/api/users/:id', userCtrl.deleteUser);
 // group endpoints
 app.post('/api/groups', groupCtrl.addGroup);
 app.put('/api/groups/:id', groupCtrl.editGroup);
-app.get('/api/groups', groupCtrl.getGroups);
-app.get('/api/groups/:id', groupCtrl.getGroup);
+app.get('/api/groups', groupCtrl.getGroups); // get all groups
+app.get('/api/groups/:id', groupCtrl.getGroup); // single group by group Id
 app.delete('/api/groups/:id', groupCtrl.deleteGroup);
 
 
