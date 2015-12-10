@@ -18,28 +18,27 @@ angular.module('myApp').controller('MainCtrl', function ($state, $stateParams, $
   /*$scope.user = {};*/
 
   // function to handle MainService call to POST user to server
-  $scope.registerUser = function (user) {
-    MainService.registerUser(user).then(function (result) {
-      /*$scope.user = result.data;*/
-      $scope.getUser(result.data._id);
-      $state.go('user', {
-        id: result.data._id
+  /*  $scope.registerUser = function (user) {
+      MainService.registerUser(user).then(function (result) {
+        $scope.getUser(result.data._id);
+        $state.go('user', {
+          id: result.data._id
+        });
       });
-    });
-  }
+    }*/
 
   // function to handle MainService call to PUT user to server
-  $scope.editUser = function (userEdit) {
-    console.log($scope.user._id);
-    MainService.editUser($scope.user._id, userEdit).then(function (response) {
-      console.log(response);
-      MainService.getUser($scope.user._id).then(function (response) {
-        $scope.user = response.data[0];
-        $state.go('user', {
-          id: $scope.user._id
-        });
-      })
-    });
-  }
+  /*  $scope.editUser = function (userEdit) {
+      console.log($scope.user._id);
+      MainService.editUser($scope.user._id, userEdit).then(function (response) {
+        console.log(response);
+        MainService.getUser($scope.user._id).then(function (response) {
+          $scope.user = response.data[0];
+          $state.go('user', {
+            id: $scope.user._id
+          });
+        })
+      });
+    }*/
 
 });

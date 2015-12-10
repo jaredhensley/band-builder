@@ -1,4 +1,4 @@
-angular.module('myApp').controller('userCtrl', function ($scope, MainService) {
+angular.module('myApp').controller('userViewCtrl', function ($scope, MainService) {
 
   // initial state of ngShow of group creation panel
   $scope.showGroupCreate = false;
@@ -25,6 +25,7 @@ angular.module('myApp').controller('userCtrl', function ($scope, MainService) {
       console.log('this is result from creating group', result);
       console.log('user ID in create group ctrl function', $scope.user._id);
       $scope.getUser($scope.user._id);
+      $scope.toggleGroupCreate();
     });
   }
 

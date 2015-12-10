@@ -15,7 +15,13 @@ module.exports = {
   getUser: function (req, res) {
     User.find({
       _id: req.params.id
-    }).populate('groups').exec().then(function (user) {
+    }).populate({
+      path: 'groups',
+      populate: {
+        path: 'admin',
+        model: 'User'
+      }
+    }).exec().then(function (user) {
       console.log(user);
       res.status(200).send(user);
     }, function (err) {

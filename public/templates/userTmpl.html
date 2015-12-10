@@ -1,46 +1,55 @@
 <div class="container">
-
+  <div>
+    <a ui-sref="editUser({id: user._id})">Edit User Info</a>
+  </div>
   <div class="row">
-    <div class="well well-lg col-sm-4">
-      <h3>Id:</h3> {{user._id}}</div>
-    <div class="well well-lg col-sm-4">
+    <div class="user-wells well well-sm col-sm-3">
+      <h3>Id:</h3> {{user._id}}
+    </div>
+    <div class="user-wells well well-sm col-sm-3">
       <h3>Username:</h3> {{user.username}}
     </div>
-    <div class="well well-lg col-sm-4">
-      <h3>Email:</h3> {{user.email}}</div>
-    <div class="well well-lg col-sm-4">
-      <h3>Biography:</h3> {{user.bio}}</div>
-    <div class="well well-lg col-sm-4">
-      <h3>Skill Level:</h3> {{user.skill}}</div>
-    <div class="well well-lg col-sm-4">
-      <h3>Genres:</h3> {{user.genres}}</div>
-    <div class="well well-lg col-sm-4">
+    <div class="user-wells well well-sm col-sm-3">
+      <h3>Email:</h3> {{user.email}}
+    </div>
+    <div class="user-wells well well-sm col-sm-3">
+      <h3>Skill Level:</h3> {{user.skill}}
+    </div>
+    <div class="user-wells well well-sm col-sm-8">
+      <h3>Biography:</h3> {{user.bio}}
+    </div>
+    <div class="user-wells well well-sm col-sm-4">
+      <h3>Genres:</h3>
+      <span ng-repeat="genre in user.genres">{{genre}}</span>
+    </div>
+
+    <div class="well well-sm col-sm-12">
       <div class="group-list-top">
         <button ng-click="toggleGroups()">Toggle</button>
         <h3>Active Groups:</h3>
         <hr>
       </div>
       <div ng-show="showGroup" ng-repeat="group in groups">
-        {{group._id}}
-        <br> {{group.location.city}}
-        <br> {{group.location.lat}} || {{group.location.lng}}
-        <br> {{group.genre[0]}}
+        <a ui-sref="groupView({id: group._id})">View Group</a> {{group._id}}
+        <br> City: {{group.location.city}}
+        <br> Coords: {{group.location.lat}} || {{group.location.lng}}
+        <br> Zipcode: {{group.location.zipcode}}
+        <br> Genre: {{group.genre[0]}}
+        <br> Admin: {{group.admin.username}} {{group.admin.email}}
         <br>
-        <button ng-click="toggleTest()">edit</button>
+        <!--<button ng-click="test=!test">edit</button>
         <form ng-show="test">
           <input type="text">
           <input type="text">
           <input type="text">
-        </form>
+        </form>-->
         <hr>
-
       </div>
     </div>
-  </div>
+    <!--end active groups div-->
 
-  <div>
-    <a ui-sref="editUser({id: user._id})">Edit User Info</a>
   </div>
+  <!--end row-->
 
   <button ng-click="toggleGroupCreate()">Toggle Group Creation</button>
 

@@ -10,6 +10,7 @@ module.exports = {
     //handles req.body before save
     req.body.users = [req.body.admin];
     geocoder.geocode(req.body.location, function (err, results) {
+      console.log('ZIPPPPPP', results[0].zipcode);
       req.body.location = {
         lat: results[0].latitude,
         lng: results[0].longitude,
@@ -60,7 +61,7 @@ module.exports = {
   getGroup: function (req, res) {
     Group.find({
       _id: req.params.id
-    }).exec().then(function (group) {
+    }).populate('users').exec().then(function (group) {
       console.log(group);
       res.status(200).send(group);
     });

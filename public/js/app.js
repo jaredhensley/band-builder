@@ -18,21 +18,22 @@ angular.module('myApp', ['ui.router', 'ui.bootstrap'])
     .state('register', {
       url: '/register',
       templateUrl: '../templates/registerTmpl.html',
-      controller: 'registerCtrl'
+      controller: 'registerViewCtrl'
     })
     .state('user', {
       url: '/user/:id',
       templateUrl: '../templates/userTmpl.html',
-      controller: 'userCtrl'
+      controller: 'userViewCtrl'
     })
     .state('editUser', {
       url: '/editUser/:id',
-      templateUrl: '../templates/editUserTmpl.html'
-        /*controller: 'signupCtrl'*/
+      templateUrl: '../templates/editUserTmpl.html',
+      controller: 'editUserCtrl'
     })
     // todo  
-    .state('editGroup', {
-      url: '/editGroup',
-      templateUrl: '../templates/editUserGroup.html'
+    .state('groupView', {
+      url: '/group/:id',
+      templateUrl: '../templates/groupTmpl.html',
+      controller: 'groupViewCtrl'
     });
 });

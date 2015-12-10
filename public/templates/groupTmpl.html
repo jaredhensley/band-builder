@@ -1,0 +1,10 @@
+<div class="container">
+  <div>Group Name: </div>
+  <div>{{group._id}}</div>
+  <div>{{group.public}}</div>
+  <div>Location:</div>
+  <div>{{group.admin}}</div>
+  <div ng-repeat="need in group.needs">{{need}}</div>
+  <div ng-repeat="genre in group.genre">{{genre}}</div>
+  <div ng-repeat="user in group.users">{{user}}</div>
+</div>
