@@ -1,10 +1,92 @@
 <div class="container">
-  <div>Group Name: </div>
-  <div>{{group._id}}</div>
-  <div>{{group.public}}</div>
-  <div>Location:</div>
-  <div>{{group.admin}}</div>
-  <div ng-repeat="need in group.needs">{{need}}</div>
-  <div ng-repeat="genre in group.genre">{{genre}}</div>
-  <div ng-repeat="user in group.users">{{user}}</div>
+  <div class="well well-sm col col-sm-3">
+    <h3>Group Name</h3> {{group.nickname}}
+  </div>
+  <div class="well well-sm col col-sm-3">
+    <h3>Group Id:</h3> {{group._id}}
+  </div>
+  <div class="well well-sm col col-sm-3">
+    <h3>Public:</h3>{{group.public}}
+  </div>
+  <div class="well well-sm col col-sm-3">
+    <h3>Location:</h3>
+    <div>
+      Group name: {{group.nickname}}
+    </div>
+    <div>
+      City: {{group.location.city}}
+    </div>
+    <div>
+      Coords: {{group.location.lat}} || {{group.location.lng}}
+    </div>
+    <div>
+      Zipcode: {{group.location.zipcode}}
+    </div>
+  </div>
+  <div class="well well-sm col col-sm-3">
+    <div>
+      Admin: {{group.admin}}
+    </div>
+  </div>
+  <div class="well well-sm col col-sm-3" ng-repeat="need in group.needs">{{need}}</div>
+  <div class="well well-sm col col-sm-3" ng-repeat="genre in group.genre">{{genre}}</div>
+  <div>
+    Users:
+    <div class="well well-sm col col-sm-12" ng-repeat="user in group.users">
+      <div class="well well-sm col col-sm-6">
+        <div>
+          {{user._id}}
+        </div>
+        <div>
+          {{user.username}}
+        </div>
+        <div>
+          {{user.email}}
+        </div>
+        <div>
+          {{user.location}}
+        </div>
+        <div>
+          {{user.bio}}
+        </div>
+        <div>
+          {{user.skill}}
+        </div>
+        <div>
+          {{user.genres}}
+        </div>
+      </div>
+      <div class="well well-sm col col-sm-6">
+        <button>Edit Group</button>
+        <form ng-submit="editGroup(updatedGroup)">
+          <!-- <div>
+          <input ng-model="updatedGroup.public" type="text" placeholder="public">
+        </div>-->
+          <div>
+            <input ng-model="updatedGroup.nickname" type="text" placeholder="nickname">
+          </div>
+          <div>
+            <!--    <input ng-model="updatedGroup.location.city" type="text" placeholder="city">
 </div>
+<div>
+  <input ng-model="updatedGroup.location.lat" type="text" placeholder="lat">
+</div>
+<div>
+  <input ng-model="updatedGroup.location.lng" type="text" placeholder="lng">
+</div>-->
+            <!--     <div>
+          <input ng-model="updatedGroup.location.zipcode" type="text" placeholder="zipcode">
+        </div>
+        <div>
+          <input ng-model="updatedGroup.admin.username" type="text" placeholder="admin username">
+        </div>
+        <div>
+          <input ng-model="updatedGroup.admin.email" type="email" placeholder="admin email">
+        </div>
+-->
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>

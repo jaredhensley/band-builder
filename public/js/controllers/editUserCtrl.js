@@ -1,4 +1,4 @@
-angular.module('myApp').controller('editUserCtrl', function ($scope) {
+angular.module('myApp').controller('editUserCtrl', function ($scope, MainService, $state) {
 
   $scope.editUser = function (userEdit) {
     console.log($scope.user._id);
@@ -6,6 +6,8 @@ angular.module('myApp').controller('editUserCtrl', function ($scope) {
       console.log(response);
       MainService.getUser($scope.user._id).then(function (response) {
         $scope.user = response.data[0];
+        $scope.getUser($scope.user._id);
+        console.log('test', $scope.user);
         $state.go('user', {
           id: $scope.user._id
         });

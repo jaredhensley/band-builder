@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
+  nickname: String,
   public: Boolean,
   location: Object,
   users: [{

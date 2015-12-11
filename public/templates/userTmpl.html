@@ -1,4 +1,5 @@
 <div class="container">
+
   <div>
     <a ui-sref="editUser({id: user._id})">Edit User Info</a>
   </div>
@@ -31,53 +32,51 @@
       </div>
       <div ng-show="showGroup" ng-repeat="group in groups">
         <a ui-sref="groupView({id: group._id})">View Group</a> {{group._id}}
-        <br> City: {{group.location.city}}
-        <br> Coords: {{group.location.lat}} || {{group.location.lng}}
-        <br> Zipcode: {{group.location.zipcode}}
-        <br> Genre: {{group.genre[0]}}
-        <br> Admin: {{group.admin.username}} {{group.admin.email}}
+        <div>
+          Group name: {{group.nickname}}
+        </div>
+        <div>
+          City: {{group.location.city}}
+        </div>
+        <div>
+          Coords: {{group.location.lat}} || {{group.location.lng}}
+        </div>
+        <div>
+          Zipcode: {{group.location.zipcode}}
+        </div>
+        <div>
+          Genre: {{group.genre[0]}}
+        </div>
+        <div>
+          Admin: {{group.admin.username}} {{group.admin.email}}
+        </div>
         <br>
-        <!--<button ng-click="test=!test">edit</button>
-        <form ng-show="test">
-          <input type="text">
-          <input type="text">
-          <input type="text">
-        </form>-->
         <hr>
       </div>
     </div>
     <!--end active groups div-->
-
   </div>
   <!--end row-->
 
-  <button ng-click="toggleGroupCreate()">Toggle Group Creation</button>
+  <div class="col col-sm-12 well well-sm">
+    <button ng-click="toggleGroupCreate()">Toggle Group Creation</button>
 
-  <form ng-show="showGroupCreate" ng-submit="createGroup(newGroup)">
-    <select name="" id="" ng-model="newGroup.public">
-      <option value="true">Public</option>
-      <option value="false">Private</option>
-    </select>
-    <br>
-    <input type="text" ng-model="newGroup.location" placeholder="group location">
-    <br>
-    <!-- <input type="text" ng-model="newGroup.users" placeholder="group members">
-    <br>-->
-    <!--<input type="text" ng-model="newGroup.admin" placeholder="group admin">
-    <br>-->
-    <input type="text" ng-model="newGroup.genre" placeholder="music genre">
-    <br>
-    <input type="text" ng-model="newGroup.needs" placeholder="group needs">
-    <br>
-    <button type="submit">Create Group</button>
-  </form>
+    <form ng-show="showGroupCreate" ng-submit="createGroup(newGroup)">
+      <select name="" id="" ng-model="newGroup.public">
+        <option value="true">Public</option>
+        <option value="false">Private</option>
+      </select>
+      <br>
+      <input type="text" ng-model="newGroup.nickname" placeholder="group name">
+      <br>
+      <input type="text" ng-model="newGroup.location" placeholder="group location">
+      <br>
+      <input type="text" ng-model="newGroup.genre" placeholder="music genre">
+      <br>
+      <input type="text" ng-model="newGroup.needs" placeholder="group needs">
+      <br>
+      <button type="submit">Create Group</button>
+    </form>
 
+  </div>
 </div>
-
-
-<!--<br> username:{{user.username}}-->
-<!--<br> email: {{user.email}}
-<br> bio: {{user.bio}}
-<br> skill: {{user.skill}}
-<br> genres: {{user.genres}}
-<br> groups: {{user.groups}}-->

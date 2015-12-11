@@ -49,4 +49,13 @@ angular.module('myApp').service('MainService', function ($http) {
     });
   }
 
+  this.editGroup = function (group) {
+    console.log(group);
+    return $http({
+      method: 'PUT',
+      url: '/api/groups/' + group._id,
+      data: group
+    });
+
+  }
 });
