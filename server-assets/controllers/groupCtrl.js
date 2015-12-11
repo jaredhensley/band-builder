@@ -14,8 +14,8 @@ module.exports = {
         lat: results[0].latitude,
         lng: results[0].longitude,
         city: results[0].city,
-        zipcode: results[0].zipcode,
-        address: results[0].formattedAddress
+        zipcode: results[0].zipcode
+          /*address: results[0].formattedAddress*/
       };
 
       // make a new group based on req.body
@@ -37,17 +37,50 @@ module.exports = {
 
   //edit existing group from admin account
   editGroup: function (req, res) {
-    Group.findOneAndUpdate({
-      _id: req.params.id
-    }, req.body, function (err, doc) {
-      if (!err) {
-        console.log(doc);
-        res.status(200).send(doc);
-      } else {
-        console.log(err);
-        res.status(500).send(err);
-      }
-    });
+    /*if (req.body.location) {*/
+    geocoder.geocode(req.body.location, function (err, results) {
+        console.log('I happened!');
+        console.log('results', results);
+        req.body.location = {
+          lat: results[0].latitude,
+          lng: results[0].longitude,
+          city: results[0].city,
+          zipcode: results[0].zipcode
+            /*address: results[0].formattedAddress*/
+        }
+      }).then(function () {
+        Group.findOneAndUpdate({
+          id: req.params.id
+        }, req.body, function (err, doc) {
+          if (!err) {
+            console.log(doc);
+            res.status(200).send(doc);
+          } else {
+            console.log(err);
+            res.status(500).send(err);
+          }
+        });
+      })
+      /*};*/
+      //console.log('location', req.body.location);
+      //    Group.findById(req.body._id).exec().then(function (group) {
+      //      console.log('GROUP', group);
+      //      req.body.genre.forEach(function (value, index) {
+      //        if (group.genre.indexOf(value) === -1) {
+      //          console.log(group.genre);
+      //          group.genre.push(value);
+      //          console.log(group.genre);
+      //        }
+      //      });
+      //      req.body.needs.forEach(function (value, index) {
+      //        if (group.needs.indexOf(value) === -1) {
+      //          group.needs.push(value);
+      //        }
+      //      });
+      //      req.body.genre = group.genre;
+      //      req.body.needs = group.needs;
+      //
+      //    }).then(function () {
   },
 
   getGroups: function (req, res) {
