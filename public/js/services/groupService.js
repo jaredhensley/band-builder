@@ -1,9 +1,5 @@
 angular.module('myApp').factory('GroupService', function ($http, $q) {
 
-  // group CRUDS
-
-  // group POST
-
   var getGroup = function (id) {
     return $http({
       method: 'GET',
@@ -11,6 +7,9 @@ angular.module('myApp').factory('GroupService', function ($http, $q) {
     });
   };
 
+  // group CRUDS
+
+  // group POST
 
   return {
 
@@ -32,20 +31,13 @@ angular.module('myApp').factory('GroupService', function ($http, $q) {
         url: '/api/groups/' + id,
         data: group
       }).then(function (group) {
-
         getGroup(id).then(function (response) {
           dfd.resolve(response.data);
         });
-
       });
       return dfd.promise;
     }
 
-
-
   }
-
-
-
 
 });
