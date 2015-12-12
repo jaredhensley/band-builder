@@ -37,17 +37,57 @@ module.exports = {
 
   //edit existing group from admin account
   editGroup: function (req, res) {
-    Group.findOneAndUpdate({
-      _id: req.params.id
-    }, req.body, function (err, doc) {
-      if (!err) {
-        console.log(doc);
-        res.status(200).send(doc);
-      } else {
-        console.log(err);
-        res.status(500).send(err);
-      }
-    });
+
+    if (req.body.location) {
+      geocoder.geocode(req.body.location, function (err, results) {
+        req.body.location = {
+          lat: results[0].latitude,
+          lng: results[0].longitude,
+          city: results[0].city,
+          zipcode: results[0].zipcode,
+          address: results[0].formattedAddress
+        };
+      }).then(function () {
+
+        Group.findByIdAndUpdate(req.params.id, req.body, {
+          new: true
+        }, function (err, group) {
+          if (!err) {
+            console.log(group);
+            res.status(200).send(group);
+          } else {
+            console.log(err);
+            res.status(500).send(err);
+          }
+        });
+
+      });
+    } else {
+
+      Group.findByIdAndUpdate(req.params.id, req.body, {
+        new: true
+      }, function (err, group) {
+        if (!err) {
+          console.log(group);
+          res.status(200).send(group);
+        } else {
+          console.log(err);
+          res.status(500).send(err);
+        }
+      });
+    }
+
+    /*    Group.findByIdAndUpdate(req.params.id, req.body, {
+          new: true
+        }, function (err, group) {
+          if (!err) {
+            console.log(group);
+            res.status(200).send(group);
+          } else {
+            console.log(err);
+            res.status(500).send(err);
+          }
+        });*/
   },
 
   getGroups: function (req, res) {

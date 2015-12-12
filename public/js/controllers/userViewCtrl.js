@@ -21,7 +21,7 @@ angular.module('myApp').controller('userViewCtrl', function ($scope, MainService
   // function to handle MainService call to POST new group to server
   $scope.createGroup = function (newGroup) {
     newGroup.admin = $scope.user._id;
-    MainService.createGroup(newGroup).then(function (result) {
+    GroupService.createGroup(newGroup).then(function (result) {
       console.log('this is result from creating group', result);
       console.log('user ID in create group ctrl function', $scope.user._id);
       $scope.getUser($scope.user._id);

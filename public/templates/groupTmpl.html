@@ -28,8 +28,14 @@
       Admin: {{group.admin}}
     </div>
   </div>
-  <div class="well well-sm col col-sm-3" ng-repeat="need in group.needs">{{need}}</div>
-  <div class="well well-sm col col-sm-3" ng-repeat="genre in group.genre">{{genre}}</div>
+  <div class="well well-sm col col-sm-3">
+    Needs:
+    <span ng-click="deleteTag(need, 'needs')" ng-repeat="need in group.needs">{{need}}&nbsp</span>
+  </div>
+  <div class="well well-sm col col-sm-3">
+    Genres:
+    <span ng-click="deleteTag(genre, 'genre')" ng-repeat="genre in group.genre">{{genre}}&nbsp</span>
+  </div>
   <div>
     Users:
     <div class="well well-sm col col-sm-12" ng-repeat="user in group.users">
@@ -58,32 +64,16 @@
       </div>
       <div class="well well-sm col col-sm-6">
         <button>Edit Group</button>
-        <form ng-submit="editGroup(updatedGroup)">
-          <!-- <div>
-          <input ng-model="updatedGroup.public" type="text" placeholder="public">
-        </div>-->
+        <form ng-submit="editGroup(editedGroup)">
           <div>
-            <input ng-model="updatedGroup.nickname" type="text" placeholder="nickname">
-          </div>
-          <div>
-            <!--    <input ng-model="updatedGroup.location.city" type="text" placeholder="city">
-</div>
-<div>
-  <input ng-model="updatedGroup.location.lat" type="text" placeholder="lat">
-</div>
-<div>
-  <input ng-model="updatedGroup.location.lng" type="text" placeholder="lng">
-</div>-->
-            <!--     <div>
-          <input ng-model="updatedGroup.location.zipcode" type="text" placeholder="zipcode">
-        </div>
-        <div>
-          <input ng-model="updatedGroup.admin.username" type="text" placeholder="admin username">
-        </div>
-        <div>
-          <input ng-model="updatedGroup.admin.email" type="email" placeholder="admin email">
-        </div>
--->
+            <select name="" id="" ng-model="editedGroup.public">
+              <option value="public">Public</option>
+              <option value="private">Private</option>
+            </select>
+            <input ng-model="editedGroup.nickname" type="text" placeholder="nickname">
+            <input ng-model="editedGroup.genre" type="text" placeholder="genre">
+            <input ng-model="editedGroup.location" type="text" placeholder="location">
+            <input ng-model="editedGroup.needs" type="text" placeholder="needs">
           </div>
           <button type="submit">Submit</button>
         </form>

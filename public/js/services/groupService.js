@@ -1,0 +1,51 @@
+angular.module('myApp').factory('GroupService', function ($http, $q) {
+
+  // group CRUDS
+
+  // group POST
+
+  var getGroup = function (id) {
+    return $http({
+      method: 'GET',
+      url: '/api/groups/' + id
+    });
+  };
+
+
+  return {
+
+    createGroup: function (newGroup) {
+      return $http({
+        method: 'POST',
+        url: '/api/groups/',
+        data: newGroup
+      })
+    },
+
+    getGroup: getGroup,
+
+    editGroup: function (id, group) {
+      var dfd = $q.defer();
+      console.log(group);
+      $http({
+        method: 'PUT',
+        url: '/api/groups/' + id,
+        data: group
+      }).then(function (group) {
+
+        getGroup(id).then(function (response) {
+          dfd.resolve(response.data);
+        });
+
+      });
+      return dfd.promise;
+    }
+
+
+
+  }
+
+
+
+
+});

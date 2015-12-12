@@ -1,9 +1,9 @@
-angular.module('myApp').controller('MainCtrl', function ($state, $stateParams, $scope, MainService) {
+angular.module('myApp').controller('MainCtrl', function ($state, $stateParams, $scope, MainService, UserService, GroupService) {
 
   // temporarily hard coded to always populate user regardless of route on pageload
   $scope.getUser = function (userID) {
     var user = userID || '56689e9aeadc01642a322d58';
-    MainService.getUser(user).then(function (response) {
+    UserService.getUser(user).then(function (response) {
       $scope.user = response.data[0];
       // hacky and crapy line 9, temp for populate view
       $scope.groups = $scope.user.groups;

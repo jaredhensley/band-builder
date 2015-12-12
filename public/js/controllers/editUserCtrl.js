@@ -1,4 +1,4 @@
-angular.module('myApp').controller('editUserCtrl', function ($scope, MainService, $state) {
+angular.module('myApp').controller('editUserCtrl', function ($scope, MainService, UserService, $state) {
 
   $scope.editUser = function (userEdit) {
     console.log($scope.user._id);
