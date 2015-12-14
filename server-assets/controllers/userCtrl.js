@@ -12,7 +12,7 @@ module.exports = {
       } else {
         var user = new User(req.body);
         user.save().then(function (user) {
-          reg.login(user, function (err) {
+          req.login(user, function (err) {
             if (err) {
               return next(err);
             } else {

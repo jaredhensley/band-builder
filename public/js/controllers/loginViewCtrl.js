@@ -1,10 +1,14 @@
-angular.module('myApp').controller('loginViewCtrl', function ($rootScope, $scope, UserService) {
+angular.module('myApp').controller('loginViewCtrl', function ($state, $rootScope, $scope, UserService) {
 
   $scope.login = function (user) {
     console.log(user);
     UserService.login(user).then(function (user) {
       $rootScope.currentUser = user;
-      console.log($rootScope.currentUser);
+      $rootScope.groups = user.groups;
+      console.log('CURRENT USER', $rootScope.currentUser);
+      $state.go('user', {
+        id: user._id
+      });
     })
   }
 

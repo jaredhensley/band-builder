@@ -20,7 +20,7 @@ mongoose.connect('mongodb://localhost/personalproject');
 
 // middleware 
 app.use(express.static('public'));
-app.use(passport.initialize());
+
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -31,6 +31,8 @@ app.use(session({
   secret: 'this is the secret'
 }));
 app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // passport local strategy configuration
 passport.use(new LocalStrategy(function (username, password, done) {
@@ -45,10 +47,7 @@ passport.use(new LocalStrategy(function (username, password, done) {
         message: 'unable to login'
       })
     }
-
   });
-
-
 }));
 
 passport.serializeUser(function (user, done) {
@@ -62,9 +61,6 @@ passport.deserializeUser(function (user, done) {
 // authentication endpoints
 app.post('/api/login', passport.authenticate('local'), authCtrl.login);
 app.get('/api/loggedin', function (req, res) {
-  console.log('HEY I GOT HERE', req.user);
-  console.log(req);
-  console.log(req.isAuthenticated);
   res.send(req.isAuthenticated() ? req.user : '0');
 });
 

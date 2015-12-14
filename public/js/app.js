@@ -42,22 +42,20 @@ angular.module('myApp', ['ui.router', 'ui.bootstrap'])
 });
 
 var checkLoggedin = function ($q, $timeout, $http, $state, $rootScope) {
-  console.log('TEST1');
+
   var dfd = $q.defer();
 
   $http.get('/api/loggedin').success(function (user) {
     $rootScope.errorMessage = null;
     if (user !== '0') {
       $rootScope.currentUser = user;
-      $state.go('user', {
-        id: user._id
-      });
       dfd.resolve();
     } else { //User is not Authenticated
       $rootScope.errorMessage = 'You need to log in.';
+      console.log('errrrrror');
       dfd.reject();
       $state.go('login');
     }
   });
-  return deferred.promise;
+  return dfd.promise;
 }
