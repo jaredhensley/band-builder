@@ -1,4 +1,4 @@
-angular.module('myApp').controller('userViewCtrl', function ($scope, MainService) {
+angular.module('myApp').controller('userViewCtrl', function ($scope, MainService, GroupService) {
 
   // initial state of ngShow of group creation panel
   $scope.showGroupCreate = false;

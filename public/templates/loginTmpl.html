@@ -1,1 +1,7 @@
 <div>LOGINTMPL</div>
+
+<form ng-submit="login(user)">
+  <input type="text" ng-model="user.username" placeholder="enter username">
+  <input type="text" ng-model="user.password" placeholder="enter password">
+  <button type="submit">Login</button>
+</form>

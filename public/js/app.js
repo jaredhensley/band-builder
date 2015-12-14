@@ -13,7 +13,7 @@ angular.module('myApp', ['ui.router', 'ui.bootstrap'])
     .state('login', {
       url: '/login',
       templateUrl: '../templates/loginTmpl.html',
-      /*controller: 'favCtrl'*/
+      controller: 'loginViewCtrl'
     })
     .state('register', {
       url: '/register',
