@@ -4,11 +4,25 @@ module.exports = {
 
   // create single user
   createUser: function (req, res) {
-    var user = new User(req.body);
-    user.save().then(function (user) {
-      console.log(user);
-      res.status(201).send(user);
-    })
+    User.findOne({
+      username: req.body.username
+    }, function (err, user) {
+      if (user) {
+        res.send(null);
+      } else {
+        var user = new User(req.body);
+        user.save().then(function (user) {
+          reg.login(user, function (err) {
+            if (err) {
+              return next(err);
+            } else {
+              res.status(200).send(user);
+            }
+          });
+          res.status(201).send(user);
+        });
+      }
+    });
   },
 
   // query for single user

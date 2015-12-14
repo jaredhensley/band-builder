@@ -2,6 +2,19 @@ angular.module('myApp').service('UserService', function ($http, $q) {
 
   // user CRUDS
 
+  // user Login
+  this.login = function (user) {
+    var dfd = $q.defer();
+    $http({
+      method: 'POST',
+      url: '/api/login',
+      data: user
+    }).then(function (user) {
+      dfd.resolve(user.data);
+    });
+    return dfd.promise;
+  }
+
   // user POST
   this.registerUser = function (user) {
     return $http({

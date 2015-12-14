@@ -4,6 +4,7 @@ var schema = new mongoose.Schema({
 
   email: String,
   username: String,
+  password: String,
   location: String,
   bio: String,
   skill: {

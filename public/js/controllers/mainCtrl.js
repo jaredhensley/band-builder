@@ -2,7 +2,7 @@ angular.module('myApp').controller('MainCtrl', function ($state, $stateParams, $
 
   // temporarily hard coded to always populate user regardless of route on pageload
   $scope.getUser = function (userID) {
-    var user = userID || '56689e9aeadc01642a322d58';
+    var user = userID || '566ef56f94e80e105306cb2f';
     UserService.getUser(user).then(function (response) {
       $scope.user = response.data[0];
       // hacky and crapy line 9, temp for populate view
