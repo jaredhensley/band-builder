@@ -20,7 +20,6 @@ mongoose.connect('mongodb://localhost/personalproject');
 
 // middleware 
 app.use(express.static('public'));
-
 app.use(cors());
 app.use(bodyParser.json());
 

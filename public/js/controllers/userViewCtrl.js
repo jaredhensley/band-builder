@@ -24,6 +24,7 @@ angular.module('myApp').controller('userViewCtrl', function ($scope, MainService
     GroupService.createGroup(newGroup).then(function (result) {
       console.log('this is result from creating group', result);
       console.log('user ID in create group ctrl function', $scope.user._id);
+      // change getUser to use passport login req.user object
       $scope.getUser($scope.user._id);
       $scope.toggleGroupCreate();
     });
