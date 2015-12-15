@@ -25,13 +25,20 @@ angular.module('myApp', ['ui.router', 'ui.bootstrap'])
       templateUrl: '../templates/userTmpl.html',
       controller: 'userViewCtrl',
       resolve: {
-        logincheck: checkLoggedin
+        user: function (UserService) {
+          return UserService.loggedin();
+        }
       }
     })
     .state('editUser', {
       url: '/editUser/:id',
       templateUrl: '../templates/editUserTmpl.html',
-      controller: 'editUserCtrl'
+      controller: 'editUserCtrl',
+      resolve: {
+        user: function (UserService) {
+          return UserService.loggedin();
+        }
+      }
     })
     // todo  
     .state('groupView', {
@@ -40,22 +47,3 @@ angular.module('myApp', ['ui.router', 'ui.bootstrap'])
       controller: 'groupViewCtrl'
     });
 });
-
-var checkLoggedin = function ($q, $timeout, $http, $state, $rootScope) {
-
-  var dfd = $q.defer();
-
-  $http.get('/api/loggedin').success(function (user) {
-    $rootScope.errorMessage = null;
-    if (user !== '0') {
-      $rootScope.currentUser = user;
-      dfd.resolve();
-    } else { //User is not Authenticated
-      $rootScope.errorMessage = 'You need to log in.';
-      console.log('errrrrror');
-      dfd.reject();
-      $state.go('login');
-    }
-  });
-  return dfd.promise;
-}

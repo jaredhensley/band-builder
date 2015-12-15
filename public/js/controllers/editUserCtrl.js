@@ -1,5 +1,5 @@
-angular.module('myApp').controller('editUserCtrl', function ($scope, MainService, UserService, $state) {
-
+angular.module('myApp').controller('editUserCtrl', function ($scope, MainService, UserService, $state, user) {
+  $scope.user = user;
   $scope.editUser = function (userEdit) {
     console.log($scope.user._id);
     UserService.editUser($scope.user._id, userEdit).then(function (response) {
@@ -8,7 +8,7 @@ angular.module('myApp').controller('editUserCtrl', function ($scope, MainService
           $scope.user = response.data[0];*/
 
       // change getUser to use passport login req.user object
-      $scope.getUser($scope.user._id);
+      /*$scope.getUser($scope.user._id);*/
 
       console.log('test', $scope.user);
       $state.go('user', {

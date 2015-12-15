@@ -3,6 +3,23 @@ angular.module('myApp').service('UserService', function ($http, $q) {
   // user CRUDS
 
   // user Login
+
+  var loggedInUser;
+  this.loggedin = function () {
+    if (loggedInUser) {
+      dfd.resolve(loggedInUser);
+    } else {
+      var dfd = $q.defer();
+      $http({
+        method: 'GET',
+        url: '/api/loggedin'
+      }).then(function (res) {
+        dfd.resolve(res.data);
+      });
+    }
+    return dfd.promise;
+  }
+
   this.login = function (user) {
     var dfd = $q.defer();
     $http({

@@ -54,16 +54,32 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (user, done) {
-  done(null, user);
+  User.find({
+    _id: user._id
+  }).populate({
+    path: 'groups',
+    populate: {
+      path: 'admin',
+      model: 'User'
+    }
+  }).exec().then(function (user) {
+    console.log(user);
+    done(null, user[0]);
+  });
 });
 
 // authentication endpoints
 app.post('/api/login', passport.authenticate('local'), authCtrl.login);
 app.get('/api/loggedin', function (req, res) {
+
   res.send(req.isAuthenticated() ? req.user : '0');
 });
 
 // user endpoints
+app.get('/api/user', function (req, res) {
+  if (!req.user) return res.status(444).send('user not logged in');
+  return res.json(req.user);
+});
 app.post('/api/users', userCtrl.createUser);
 app.get('/api/users/:id', userCtrl.getUser);
 app.get('/api/users', userCtrl.getUsers);
@@ -76,7 +92,6 @@ app.put('/api/groups/:id', groupCtrl.editGroup);
 app.get('/api/groups', groupCtrl.getGroups); // get all groups
 app.get('/api/groups/:id', groupCtrl.getGroup); // single group by group Id
 app.delete('/api/groups/:id', groupCtrl.deleteGroup);
-
 
 // server
 app.listen(9001, function (err) {
