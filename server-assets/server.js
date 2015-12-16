@@ -68,23 +68,36 @@ passport.deserializeUser(function (user, done) {
   });
 });
 
+// auth middleware
+function auth(req, res, next) {
+  if (!req.isAuthenticated()) {
+    return res.status(401).end();
+  } else {
+    next();
+  }
+}
+
 // authentication endpoints
 app.post('/api/login', passport.authenticate('local'), authCtrl.login);
-app.get('/api/loggedin', function (req, res) {
+app.get('/api/loggedin', auth, function (req, res) {
+  return res.json(req.user);
+});
 
-  res.send(req.isAuthenticated() ? req.user : '0');
+app.get('/api/logout', function (req, res) {
+  req.logout();
+  return res.status(200).end();
 });
 
 // user endpoints
-app.get('/api/user', function (req, res) {
-  if (!req.user) return res.status(444).send('user not logged in');
-  return res.json(req.user);
-});
 app.post('/api/users', userCtrl.createUser);
 app.get('/api/users/:id', userCtrl.getUser);
 app.get('/api/users', userCtrl.getUsers);
 app.put('/api/users/:id', userCtrl.editUser);
 app.delete('/api/users/:id', userCtrl.deleteUser);
+app.get('/api/user', function (req, res) {
+  if (!req.user) return res.status(401).send('user not logged in');
+  return res.json(req.user);
+});
 
 // group endpoints
 app.post('/api/groups', groupCtrl.addGroup);

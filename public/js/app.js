@@ -1,7 +1,7 @@
 angular.module('myApp', ['ui.router', 'ui.bootstrap'])
 
 
-.config(function ($urlRouterProvider, $stateProvider) {
+.config(function ($urlRouterProvider, $stateProvider, $httpProvider) {
 
   $urlRouterProvider.otherwise('/');
 
@@ -15,6 +15,15 @@ angular.module('myApp', ['ui.router', 'ui.bootstrap'])
       templateUrl: '../templates/loginTmpl.html',
       controller: 'loginViewCtrl'
     })
+    .state('logout', {
+      url: '/logout',
+      controller: function (UserService, $state) {
+        UserService.logout().then(function () {
+          console.log('LOGING OUT');
+          $state.go('login');
+        });
+      }
+    })
     .state('register', {
       url: '/register',
       templateUrl: '../templates/registerTmpl.html',
@@ -25,6 +34,7 @@ angular.module('myApp', ['ui.router', 'ui.bootstrap'])
       templateUrl: '../templates/userTmpl.html',
       controller: 'userViewCtrl',
       resolve: {
+        //returns logged in user to controller to be put on scope
         user: function (UserService) {
           return UserService.loggedin();
         }
@@ -35,6 +45,7 @@ angular.module('myApp', ['ui.router', 'ui.bootstrap'])
       templateUrl: '../templates/editUserTmpl.html',
       controller: 'editUserCtrl',
       resolve: {
+        //returns logged in user to controller to be put on scope
         user: function (UserService) {
           return UserService.loggedin();
         }
@@ -46,4 +57,23 @@ angular.module('myApp', ['ui.router', 'ui.bootstrap'])
       templateUrl: '../templates/groupTmpl.html',
       controller: 'groupViewCtrl'
     });
+
+  $httpProvider.interceptors.push(function ($q) {
+    return {
+      responseError: function (res) {
+        console.log('ERROR');
+        if (res.status === 401) {
+          console.log('401 LOL');
+          document.location = '/#/login';
+          /*$state.go('login');*/
+        }
+        /*if (res.status === 403) {
+          console.log('403 LOL');
+          document.location = '/#/login';
+          //$state.go('login');
+        }*/
+        return $q.reject();
+      }
+    };
+  });
 });

@@ -54,7 +54,9 @@ module.exports = {
   editUser: function (req, res) {
     User.findOneAndUpdate({
       _id: req.params.id
-    }, req.body, function (err, doc) {
+    }, req.body, {
+      new: true
+    }, function (err, doc) {
       if (!err) {
         console.log(doc);
         res.status(200).send(doc);

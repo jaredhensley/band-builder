@@ -4,21 +4,24 @@ angular.module('myApp').service('UserService', function ($http, $q) {
 
   // user Login
 
+
   var loggedInUser;
   this.loggedin = function () {
+    var dfd = $q.defer();
     if (loggedInUser) {
       dfd.resolve(loggedInUser);
     } else {
-      var dfd = $q.defer();
       $http({
         method: 'GET',
         url: '/api/loggedin'
       }).then(function (res) {
+        loggedInUser = res.data; //!!!
         dfd.resolve(res.data);
       });
     }
     return dfd.promise;
   }
+
 
   this.login = function (user) {
     var dfd = $q.defer();
@@ -28,6 +31,19 @@ angular.module('myApp').service('UserService', function ($http, $q) {
       data: user
     }).then(function (user) {
       dfd.resolve(user.data);
+    });
+    return dfd.promise;
+  }
+
+  this.logout = function () {
+    loggedInUser = null;
+    var dfd = $q.defer();
+    console.log('test');
+    $http({
+      method: 'GET',
+      url: '/api/logout'
+    }).then(function (res) {
+      dfd.resolve(res.data);
     });
     return dfd.promise;
   }

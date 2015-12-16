@@ -3,8 +3,8 @@ var User = require('../models/user');
 module.exports = {
 
   login: function (req, res) {
-    console.log(req.user);
-    res.json('HEY', req.user);
+    console.log('THIS MY USER', req.user);
+    res.status(200).send(req.user);
   }
 
 }
