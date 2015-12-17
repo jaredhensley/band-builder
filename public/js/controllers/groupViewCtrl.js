@@ -17,13 +17,9 @@ angular.module('myApp').controller('groupViewCtrl', function ($scope, MainServic
     }
     if (updateObj.public) {
       if (updateObj.public === 'public') {
-
         updateObj.public = true;
-
       } else {
-
         updateObj.public = false;
-
       }
     }
 

@@ -1,3 +1,26 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 .groups-list-top {
   background-color: cornflowerblue;
+}
+
+.jumbotron {
+  background-color: #2E2D88;
+  color: white;
+  /* background-image: url('../images/bandfinder2.jpeg');*/
+  /*
+  background-size: cover;
+*/
+}
+
+.jumbotron img {
+  background-size: cover;
 }

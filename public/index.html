@@ -10,7 +10,20 @@
 </head>
 
 <body ng-controller="MainCtrl">
-  <a ui-sref="logout">logout</a>
+
+  <div class="container">
+    <header class="page-header">
+      <ul class="nav nav-pills pull-right">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">About BandFinder</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Logout</a></li>
+      </ul>
+      <h3>BandFinder</h3>
+    </header>
+  </div>
+
+  <!--<a ui-sref="logout">logout</a>-->
   <ui-view></ui-view>
 
   <!--scripts-->
@@ -25,9 +38,11 @@
   <script src="js/controllers/userViewCtrl.js"></script>
   <script src="js/controllers/editUserCtrl.js"></script>
   <script src="js/controllers/groupViewCtrl.js"></script>
+  <script src="js/controllers/searchCtrl.js"></script>
   <script src="js/services/mainService.js"></script>
   <script src="js/services/groupService.js"></script>
   <script src="js/services/userService.js"></script>
+  <script src="js/services/searchService.js"></script>
 
 </body>
 

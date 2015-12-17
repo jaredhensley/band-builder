@@ -5,21 +5,21 @@ angular.module('myApp').service('UserService', function ($http, $q) {
   // user Login
 
 
-  var loggedInUser;
+  //  var loggedInUser;
   this.loggedin = function () {
-    var dfd = $q.defer();
-    if (loggedInUser) {
-      dfd.resolve(loggedInUser);
-    } else {
-      $http({
-        method: 'GET',
-        url: '/api/loggedin'
-      }).then(function (res) {
-        loggedInUser = res.data; //!!!
-        dfd.resolve(res.data);
-      });
-    }
-    return dfd.promise;
+    //    var dfd = $q.defer();
+    //    if (loggedInUser) {
+    //      dfd.resolve(loggedInUser);
+    //    } else {
+    return $http({
+      method: 'GET',
+      url: '/api/user'
+    }).then(function (res) {
+      return res.data; //!!!
+      //      dfd.resolve(res.data);
+    });
+    //    }
+    //    return dfd.promise;
   }
 
 
@@ -74,6 +74,15 @@ angular.module('myApp').service('UserService', function ($http, $q) {
       method: 'PUT',
       url: '/api/users/' + userID,
       data: userEdit
+    });
+  }
+
+  this.getTheUser = function () {
+    return $http({
+      method: 'GET',
+      url: '/api/user'
+    }).then(function (res) {
+      return res.data;
     });
   }
 });

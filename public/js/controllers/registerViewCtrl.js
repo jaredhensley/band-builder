@@ -2,7 +2,7 @@ angular.module('myApp').controller('registerViewCtrl', function ($state, $rootSc
 
   $scope.registerUser = function (user) {
     UserService.registerUser(user).then(function (result) {
-      $scope.getUser(result.data._id);
+      $scope.updateUser(result.data._id);
       $state.go('user', {
         id: result.data._id
       });

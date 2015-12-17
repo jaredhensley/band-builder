@@ -33,25 +33,35 @@ angular.module('myApp', ['ui.router', 'ui.bootstrap'])
       url: '/user/:id',
       templateUrl: '../templates/userTmpl.html',
       controller: 'userViewCtrl',
-      resolve: {
-        //returns logged in user to controller to be put on scope
-        user: function (UserService) {
-          return UserService.loggedin();
-        }
-      }
+      /*  resolve: {
+          //returns logged in user to controller to be put on scope
+          user: function (UserService) {
+            return UserService.loggedin();
+          }
+        }*/
+    })
+    .state('search', {
+      url: '/search',
+      templateUrl: '../templates/searchTmpl.html',
+      controller: 'searchCtrl',
+      /*  resolve: {
+          //returns logged in user to controller to be put on scope
+          user: function (UserService) {
+            return UserService.loggedin();
+          }
+        }*/
     })
     .state('editUser', {
       url: '/editUser/:id',
       templateUrl: '../templates/editUserTmpl.html',
       controller: 'editUserCtrl',
-      resolve: {
-        //returns logged in user to controller to be put on scope
-        user: function (UserService) {
-          return UserService.loggedin();
-        }
-      }
+      /* resolve: {
+         //returns logged in user to controller to be put on scope
+         user: function (UserService) {
+           return UserService.loggedin();
+         }
+       }*/
     })
-    // todo  
     .state('groupView', {
       url: '/group/:id',
       templateUrl: '../templates/groupTmpl.html',
@@ -64,7 +74,7 @@ angular.module('myApp', ['ui.router', 'ui.bootstrap'])
         console.log('ERROR');
         if (res.status === 401) {
           console.log('401 LOL');
-          document.location = '/#/login';
+          /*document.location = '/#/login';*/
           /*$state.go('login');*/
         }
         /*if (res.status === 403) {
