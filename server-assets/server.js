@@ -107,6 +107,9 @@ app.get('/api/groups', groupCtrl.getGroups); // get all groups
 app.get('/api/groups/:id', groupCtrl.getGroup); // single group by group Id
 app.delete('/api/groups/:id', groupCtrl.deleteGroup);
 
+// location endpoints
+app.post('/api/search', groupCtrl.findLocation);
+
 // server
 app.listen(9001, function (err) {
   if (!err) {

@@ -1,13 +1,13 @@
 angular.module('myApp').service('searchService', function ($http, $q) {
 
-  this.findNearby = function () {
+  this.findNearby = function (location) {
+    console.log(location);
     var dfd = $q.defer();
     $http({
-      method: 'GET',
-      url: '',
+      method: 'POST',
+      url: '/api/search',
       data: {
-
-
+        search: location
       }
 
     }).then(function (results) {

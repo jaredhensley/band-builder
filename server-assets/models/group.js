@@ -3,7 +3,17 @@ var mongoose = require('mongoose');
 var schema = new mongoose.Schema({
   nickname: String,
   public: Boolean,
-  location: Object,
+  location: {
+    lat: Number,
+    lng: Number,
+    city: String,
+    zipcode: Number,
+    address: String,
+    loc: {
+      type: [Number],
+      index: '2d'
+    }
+  },
   users: [{
     type: String,
     ref: 'User'

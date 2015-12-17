@@ -4,6 +4,38 @@ var geocoder = require('../node-geosearch');
 
 module.exports = {
 
+  findLocation: function (req, res, next) {
+    console.log(req.body);
+    var limit = req.query.limit || 10;
+
+    // get the max distance or set it to 8 kilometers
+    var maxDistance = req.query.distance || 8;
+
+    // we need to convert the distance to radians
+    // the raduis of Earth is approximately 6371 kilometers
+    //    maxDistance /= 6371;
+
+    // get coordinates [ <longitude> , <latitude> ]
+    var coords = [];
+
+    geocoder.geocode(req.body.search).then(function (res) {
+      return [res[0].longitude, res[0].latitude];
+    }).then(function (coords) {
+      console.log(222222, coords, maxDistance, maxDistance);
+      return Group.find({
+        'location.loc': {
+          $near: coords,
+          $maxDistance: (maxDistance / 69)
+        }
+      }).exec();
+    }).then(function (locations) {
+      console.log(5555555555, locations);
+      return res.json(locations);
+    }).catch(function (err) {
+      return res.status(500).json(err);
+    });
+  },
+
   // creates a new group from admin account
   addGroup: function (req, res) {
 
@@ -15,7 +47,8 @@ module.exports = {
         lng: results[0].longitude,
         city: results[0].city,
         zipcode: results[0].zipcode,
-        address: results[0].formattedAddress
+        address: results[0].formattedAddress,
+        loc: [results[0].longitude, results[0].latitude]
       };
 
       // make a new group based on req.body
