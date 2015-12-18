@@ -63,7 +63,6 @@ passport.deserializeUser(function (user, done) {
       model: 'User'
     }
   }).exec().then(function (user) {
-    console.log(user);
     done(null, user[0]);
   });
 });
@@ -107,8 +106,11 @@ app.get('/api/groups', groupCtrl.getGroups); // get all groups
 app.get('/api/groups/:id', groupCtrl.getGroup); // single group by group Id
 app.delete('/api/groups/:id', groupCtrl.deleteGroup);
 
-// location endpoints
+// query endpoints
 app.post('/api/search', groupCtrl.findLocation);
+
+// access endpoints
+app.post('/api/joinGroup', groupCtrl.joinGroup);
 
 // server
 app.listen(9001, function (err) {

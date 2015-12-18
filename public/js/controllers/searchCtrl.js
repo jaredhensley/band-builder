@@ -7,4 +7,13 @@ angular.module('myApp').controller('searchCtrl', function ($scope, searchService
     });
   }
 
+  $scope.joinGroup = function (user, group) {
+    console.log('test', user);
+    console.log('test2', group);
+    searchService.joinGroup(user, group).then(function (result) {
+      console.log(result);
+      $scope.updateUser();
+    });
+  }
+
 });

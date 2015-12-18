@@ -16,4 +16,19 @@ angular.module('myApp').service('searchService', function ($http, $q) {
     return dfd.promise;
   }
 
+  this.joinGroup = function (user, group) {
+    console.log(user, group);
+    return $http({
+      method: 'POST',
+      url: '/api/joinGroup',
+      data: {
+        user: user,
+        group: group
+      }
+    }).then(function (result) {
+      return result;
+    });
+
+  }
+
 });

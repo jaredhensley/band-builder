@@ -18,6 +18,10 @@ var schema = new mongoose.Schema({
     type: String,
     ref: 'User'
   }],
+  pendingUsers: [{
+    type: String,
+    ref: 'User'
+  }],
   admin: {
     type: String,
     ref: 'User'

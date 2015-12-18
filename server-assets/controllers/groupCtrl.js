@@ -5,7 +5,6 @@ var geocoder = require('../node-geosearch');
 module.exports = {
 
   findLocation: function (req, res, next) {
-    console.log(req.body);
     var limit = req.query.limit || 10;
 
     // get the max distance or set it to 8 kilometers
@@ -21,7 +20,6 @@ module.exports = {
     geocoder.geocode(req.body.search).then(function (res) {
       return [res[0].longitude, res[0].latitude];
     }).then(function (coords) {
-      console.log(222222, coords, maxDistance, maxDistance);
       return Group.find({
         'location.loc': {
           $near: coords,
@@ -29,7 +27,6 @@ module.exports = {
         }
       }).exec();
     }).then(function (locations) {
-      console.log(5555555555, locations);
       return res.json(locations);
     }).catch(function (err) {
       return res.status(500).json(err);
@@ -86,10 +83,8 @@ module.exports = {
           new: true
         }, function (err, group) {
           if (!err) {
-            console.log(group);
             res.status(200).send(group);
           } else {
-            console.log(err);
             res.status(500).send(err);
           }
         });
@@ -101,26 +96,12 @@ module.exports = {
         new: true
       }, function (err, group) {
         if (!err) {
-          console.log(group);
           res.status(200).send(group);
         } else {
-          console.log(err);
           res.status(500).send(err);
         }
       });
     }
-
-    /*    Group.findByIdAndUpdate(req.params.id, req.body, {
-          new: true
-        }, function (err, group) {
-          if (!err) {
-            console.log(group);
-            res.status(200).send(group);
-          } else {
-            console.log(err);
-            res.status(500).send(err);
-          }
-        });*/
   },
 
   getGroups: function (req, res) {
@@ -143,13 +124,35 @@ module.exports = {
       _id: req.params.id
     }, function (err, result) {
       if (!err) {
-        console.log(result);
         res.status(200).send(result);
       } else {
-        console.log(err);
         res.status(500).send(err);
       }
     });
+  },
+
+  joinGroup: function (req, res) {
+    console.log(7777777, req.body.user);
+    console.log(888888, req.body.group);
+    var pendingUsers = {
+      pendingUsers: req.body.user
+    };
+    console.log(pendingUsers);
+    Group.findByIdAndUpdate(req.body.group, {
+        $addToSet: {
+          "pendingUsers": JSON.stringify(req.body.user)
+        }
+      }, {
+        new: true
+      },
+      function (err, group) {
+        if (!err) {
+          res.status(200).send(group);
+        } else {
+          console.log(err);
+          res.status(500).send(err);
+        }
+      });
   }
 
 }
