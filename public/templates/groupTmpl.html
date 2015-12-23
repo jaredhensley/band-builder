@@ -1,4 +1,5 @@
 <div class="container">
+  {{group}}
   <div class="well well-sm col col-sm-3">
     <h3>Group Name</h3> {{group.nickname}}
   </div>
@@ -35,6 +36,12 @@
   <div class="well well-sm col col-sm-3">
     Genres:
     <span ng-click="deleteTag(genre, 'genre')" ng-repeat="genre in group.genre">{{genre}}&nbsp</span>
+  </div>
+  <div>
+    pending users:
+    <div ng-repeat="pendingUser in group.pendingUsers">
+      <div ng-click="approveUser(pendingUser)">{{pendingUser}}</div>
+    </div>
   </div>
   <div>
     Users:

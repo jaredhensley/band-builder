@@ -17,7 +17,7 @@ angular.module('myApp').service('searchService', function ($http, $q) {
   }
 
   this.joinGroup = function (user, group) {
-    console.log(user, group);
+    console.log(23424234234234234242, user, group);
     return $http({
       method: 'POST',
       url: '/api/joinGroup',

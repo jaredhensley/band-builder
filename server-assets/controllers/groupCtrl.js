@@ -74,7 +74,7 @@ module.exports = {
           lat: results[0].latitude,
           lng: results[0].longitude,
           city: results[0].city,
-          zipcode: results[0].zipcode,
+          /* zipcode: results[0].zipcode,*/
           address: results[0].formattedAddress
         };
       }).then(function () {
@@ -85,6 +85,7 @@ module.exports = {
           if (!err) {
             res.status(200).send(group);
           } else {
+            console.log(69696969696, err);
             res.status(500).send(err);
           }
         });
@@ -132,15 +133,9 @@ module.exports = {
   },
 
   joinGroup: function (req, res) {
-    console.log(7777777, req.body.user);
-    console.log(888888, req.body.group);
-    var pendingUsers = {
-      pendingUsers: req.body.user
-    };
-    console.log(pendingUsers);
     Group.findByIdAndUpdate(req.body.group, {
         $addToSet: {
-          "pendingUsers": JSON.stringify(req.body.user)
+          "pendingUsers": req.body.user
         }
       }, {
         new: true
@@ -149,10 +144,14 @@ module.exports = {
         if (!err) {
           res.status(200).send(group);
         } else {
-          console.log(err);
           res.status(500).send(err);
         }
       });
+  },
+
+  approveUser: function (req, res) {
+    console.log("TESTTTT");
+    console.log(req.body);
   }
 
 }

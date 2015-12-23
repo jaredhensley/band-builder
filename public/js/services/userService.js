@@ -7,21 +7,13 @@ angular.module('myApp').service('UserService', function ($http, $q) {
 
   //  var loggedInUser;
   this.loggedin = function () {
-    //    var dfd = $q.defer();
-    //    if (loggedInUser) {
-    //      dfd.resolve(loggedInUser);
-    //    } else {
     return $http({
       method: 'GET',
       url: '/api/user'
     }).then(function (res) {
       return res.data; //!!!
-      //      dfd.resolve(res.data);
     });
-    //    }
-    //    return dfd.promise;
   }
-
 
   this.login = function (user) {
     var dfd = $q.defer();
@@ -52,7 +44,7 @@ angular.module('myApp').service('UserService', function ($http, $q) {
   this.registerUser = function (user) {
     return $http({
       method: 'POST',
-      url: 'http://localhost:9001/api/users',
+      url: '/api/users',
       data: user
     });
   }
@@ -61,7 +53,7 @@ angular.module('myApp').service('UserService', function ($http, $q) {
   this.getUser = function (user) {
     return $http({
       method: 'GET',
-      url: 'http://localhost:9001/api/users/' + user,
+      url: '/api/users/' + user,
       data: user
     }).then(function (user) {
       return user;

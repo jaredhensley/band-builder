@@ -111,6 +111,7 @@ app.post('/api/search', groupCtrl.findLocation);
 
 // access endpoints
 app.post('/api/joinGroup', groupCtrl.joinGroup);
+app.post('/api/groups/approveUser', groupCtrl.approveUser);
 
 // server
 app.listen(9001, function (err) {

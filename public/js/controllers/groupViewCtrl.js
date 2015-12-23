@@ -2,6 +2,7 @@ angular.module('myApp').controller('groupViewCtrl', function ($scope, MainServic
 
   GroupService.getGroup($stateParams.id).then(function (result) {
     $scope.group = result.data;
+    console.log($scope.group.pendingUsers);
   });
 
   var splitText = function (str) {
@@ -71,6 +72,17 @@ angular.module('myApp').controller('groupViewCtrl', function ($scope, MainServic
       console.log(group);
     });
   };
+
+  $scope.approveUser = function (user) {
+    console.log(999999, user);
+
+
+    GroupService.approveUser(user).then(function (user) {
+      GroupService.getGroup($stateParams.id).then(function (result) {
+        $scope.group = result.data;
+      });
+    });
+  }
 
 
 });
