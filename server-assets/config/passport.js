@@ -7,6 +7,8 @@ var passport = require('passport'),
 
 // Define the Passport configuration method
 module.exports = function () {
+  // Load Passport's strategies configuration files
+  require('./strategies/local.js')();
   // Load the 'User' model
   var User = mongoose.model('User');
 
@@ -30,6 +32,5 @@ module.exports = function () {
     });
   });
 
-  // Load Passport's strategies configuration files
-  require('./strategies/local.js')();
+
 };

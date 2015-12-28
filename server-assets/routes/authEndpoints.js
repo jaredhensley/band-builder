@@ -10,6 +10,9 @@ function auth(req, res, next) {
 }
 
 module.exports = function (app) {
+  app.get('/test', function (req, res, next) {
+    res.render('shithedad');
+  });
   app.post('/api/login', passport.authenticate('local'), authCtrl.login);
   app.get('/api/loggedin', auth, function (req, res) {
     return res.json(req.user);

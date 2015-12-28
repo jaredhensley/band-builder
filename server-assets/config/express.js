@@ -42,7 +42,7 @@ module.exports = function () {
   }));
 
   // Set the application view engine and 'views' folder
-  app.set('views', './views');
+  app.set('views', './server-assets/views');
   app.set('view engine', 'ejs');
 
   // Configure the flash messages middleware
@@ -56,8 +56,11 @@ module.exports = function () {
   /*	require('../app/routes/index.server.routes.js')(app);
   	require('../app/routes/users.server.routes.js')(app);
   	require('../app/routes/articles.server.routes.js')(app);*/
+  require('../routes/index.server.routes')(app);
   require('../routes/authEndpoints')(app);
   require('../routes/userEndPoints')(app);
+  require('../routes/groupEndPoints')(app);
+
 
   // Configure static file serving
   app.use(express.static('./public'));

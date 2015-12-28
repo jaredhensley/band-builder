@@ -1,4 +1,4 @@
-angular.module('myApp').controller('loginViewCtrl', function ($state, $rootScope, $scope, UserService) {
+angular.module('myApp').controller('loginViewCtrl', function ($state, $scope, UserService) {
 
   $scope.login = function (credentials) {
     UserService.login(credentials).then(function (user) {

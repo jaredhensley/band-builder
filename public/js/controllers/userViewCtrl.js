@@ -1,4 +1,4 @@
-angular.module('myApp').controller('userViewCtrl', function ($scope, MainService, GroupService, UserService) {
+angular.module('myApp').controller('userViewCtrl', function ($scope, GroupService) {
   $scope.updateUser();
   //    $scope.user = user;
   /*

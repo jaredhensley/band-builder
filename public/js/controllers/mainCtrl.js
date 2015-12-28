@@ -1,4 +1,4 @@
-angular.module('myApp').controller('MainCtrl', function ($rootScope, $state, $stateParams, $scope, MainService, UserService, GroupService) {
+angular.module('myApp').controller('MainCtrl', function ($state, $stateParams, $scope, UserService) {
 
   $scope.updateUser = function () {
     return UserService.loggedin().then(function (user) {
@@ -7,6 +7,12 @@ angular.module('myApp').controller('MainCtrl', function ($rootScope, $state, $st
     });
   };
 
-  $scope.updateUser();
+  /*$scope.updateUser();*/
+
+  /*  $scope.currentUser = null;
+    $scope.isAuthorized = AuthService.isAuthorized;
+    $scope.setCurrentUser = function (user) {
+      $scope.currentUser = user;
+    };*/
 
 });

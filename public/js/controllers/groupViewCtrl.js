@@ -1,4 +1,4 @@
-angular.module('myApp').controller('groupViewCtrl', function ($scope, MainService, GroupService, $stateParams) {
+angular.module('myApp').controller('groupViewCtrl', function ($scope, GroupService, $stateParams) {
 
   GroupService.getGroup($stateParams.id).then(function (result) {
     $scope.group = result.data;
@@ -74,9 +74,6 @@ angular.module('myApp').controller('groupViewCtrl', function ($scope, MainServic
   };
 
   $scope.approveUser = function (user) {
-    console.log(999999, user);
-
-
     GroupService.approveUser(user).then(function (user) {
       GroupService.getGroup($stateParams.id).then(function (result) {
         $scope.group = result.data;

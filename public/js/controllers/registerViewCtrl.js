@@ -1,4 +1,4 @@
-angular.module('myApp').controller('registerViewCtrl', function ($state, $rootScope, $scope, MainService, UserService) {
+angular.module('myApp').controller('registerViewCtrl', function ($state, $scope, UserService) {
 
   $scope.registerUser = function (user) {
     UserService.registerUser(user).then(function (result) {

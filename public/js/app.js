@@ -3,7 +3,7 @@ angular.module('myApp', ['ui.router', 'ui.bootstrap'])
 
 .config(function ($urlRouterProvider, $stateProvider, $httpProvider) {
 
-  $urlRouterProvider.otherwise('/');
+  /*$urlRouterProvider.otherwise('/');*/
 
   $stateProvider
     .state('home', {
@@ -68,22 +68,4 @@ angular.module('myApp', ['ui.router', 'ui.bootstrap'])
       controller: 'groupViewCtrl'
     });
 
-  //  $httpProvider.interceptors.push(function ($q) {
-  //    return {
-  //      responseError: function (res) {
-  //        console.log('ERROR');
-  //        if (res.status === 401) {
-  //          console.log('401 LOL');
-  //          /*document.location = '/#/login';*/
-  //          /*$state.go('login');*/
-  //        }
-  //        /*if (res.status === 403) {
-  //          console.log('403 LOL');
-  //          document.location = '/#/login';
-  //          //$state.go('login');
-  //        }*/
-  //        return $q.reject();
-  //      }
-  //    };
-  //  });
 });
