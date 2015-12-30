@@ -1,4 +1,6 @@
-angular.module('myApp').controller('userViewCtrl', function ($scope, GroupService) {
+angular.module('myApp').controller('userViewCtrl', function ($scope, GroupService, IdentityService) {
+  $scope.IdentityService = IdentityService.currentUser;
+  console.log('USER FROM IDENTITY SERVICE', $scope.IdentityService);
   $scope.updateUser();
   //    $scope.user = user;
   /*

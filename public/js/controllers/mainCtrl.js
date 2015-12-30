@@ -1,4 +1,4 @@
-angular.module('myApp').controller('MainCtrl', function ($state, $stateParams, $scope, UserService) {
+angular.module('myApp').controller('MainCtrl', function ($state, $stateParams, $scope, UserService, IdentityService) {
 
   $scope.updateUser = function () {
     return UserService.loggedin().then(function (user) {

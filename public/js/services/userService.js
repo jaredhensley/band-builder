@@ -1,4 +1,4 @@
-angular.module('myApp').service('UserService', function ($http, $q) {
+angular.module('myApp').service('UserService', function ($http, $q, IdentityService) {
 
   // user CRUDS
 
@@ -22,6 +22,7 @@ angular.module('myApp').service('UserService', function ($http, $q) {
       url: '/api/login',
       data: user
     }).then(function (user) {
+      IdentityService.currentUser = user.data;
       dfd.resolve(user.data);
     });
     return dfd.promise;
@@ -35,6 +36,7 @@ angular.module('myApp').service('UserService', function ($http, $q) {
       method: 'GET',
       url: '/api/logout'
     }).then(function (res) {
+      IdentityService.currentUser = undefined;
       dfd.resolve(res.data);
     });
     return dfd.promise;

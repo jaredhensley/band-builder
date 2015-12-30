@@ -1,5 +1,5 @@
-angular.module('myApp').factory('AuthService', ['$q', '$timeout', '$http',
-  function ($q, $timeout, $http) {
+angular.module('myApp').factory('AuthService', ['$q', '$timeout', '$http', 'IdentityService',
+  function ($q, $timeout, $http, IdentityService) {
 
     // create user variable
     var user = null;
@@ -18,7 +18,7 @@ angular.module('myApp').factory('AuthService', ['$q', '$timeout', '$http',
 
 
 
-    function login(user) {
+    function login(credentials) {
 
       // create a new instance of deferred
       var deferred = $q.defer();
@@ -27,12 +27,13 @@ angular.module('myApp').factory('AuthService', ['$q', '$timeout', '$http',
       $http({
           method: 'POST',
           url: '/api/login',
-          data: user
+          data: credentials
         })
         // handle success
         .success(function (data, status) {
-          if (status === 200 && user.status) {
+          if (status === 200 && data.status) {
             user = true;
+            IdentityService.currentUser = data.data
             deferred.resolve(data.data);
           } else {
             user = false;
@@ -81,12 +82,12 @@ angular.module('myApp').factory('AuthService', ['$q', '$timeout', '$http',
 
       // send a post request to the server
       $http({
-        method: 'POST',
-        url: '/api/users',
-        data: user
-      });
-      // handle success
-      .success(function (data, status) {
+          method: 'POST',
+          url: '/api/users',
+          data: user
+        })
+        // handle success
+        .success(function (data, status) {
           if (status === 200 && data.status) {
             deferred.resolve();
           } else {
