@@ -19,6 +19,7 @@ module.exports = function (app) {
   app.delete('/api/users/:id', userCtrl.deleteUser);
   app.get('/api/user', auth, function (req, res) {
     if (!req.user) return res.status(401).send('user not logged in');
+    console.log(req.user);
     return res.json(req.user);
   });
 }

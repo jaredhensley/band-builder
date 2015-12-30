@@ -22,6 +22,7 @@ angular.module('myApp').service('UserService', function ($http, $q, IdentityServ
       url: '/api/login',
       data: user
     }).then(function (user) {
+      console.log(user);
       console.log(55555, user.data);
       IdentityService.currentUser = user.data;
       dfd.resolve(user.data);
@@ -45,13 +46,18 @@ angular.module('myApp').service('UserService', function ($http, $q, IdentityServ
 
   // user POST
   this.registerUser = function (user) {
-    return $http({
+    var dfd = $q.defer();
+    $http({
       method: 'POST',
       url: '/api/users',
       data: user
     }).then(function (user) {
+      console.log(user);
+      console.log(user.data);
       IdentityService.currentUser = user.data;
-    })
+      dfd.resolve(user.data);
+    });
+    return dfd.promise;
   }
 
   // user GET

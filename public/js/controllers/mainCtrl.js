@@ -6,6 +6,10 @@ angular.module('myApp').controller('MainCtrl', function ($state, $stateParams, $
         return user;
       });
     };*/
+  // setter function or a getter function ??
+  $scope.updateUser = function () {
+    $scope.user = IdentityService.currentUser;
+  }
 
   $scope.user = IdentityService.currentUser;
   /*$scope.updateUser();*/

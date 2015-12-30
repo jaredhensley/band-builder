@@ -28,6 +28,7 @@ module.exports = function () {
         model: 'User'
       }
     }).exec().then(function (user) {
+      console.log('LOGIN TEST', user);
       done(null, user);
     });
   });

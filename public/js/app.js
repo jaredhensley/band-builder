@@ -20,6 +20,7 @@ angular.module('myApp', ['ui.router', 'ui.bootstrap'])
       controller: function (UserService, $state) {
         UserService.logout().then(function () {
           console.log('LOGING OUT');
+          window.user = null;
           $state.go('login');
         });
       }
