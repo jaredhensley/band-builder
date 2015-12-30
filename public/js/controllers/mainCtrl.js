@@ -1,12 +1,13 @@
 angular.module('myApp').controller('MainCtrl', function ($state, $stateParams, $scope, UserService, IdentityService) {
 
-  $scope.updateUser = function () {
-    return UserService.loggedin().then(function (user) {
-      $scope.user = user;
-      return user;
-    });
-  };
+  /*  $scope.updateUser = function () {
+      return UserService.loggedin().then(function (user) {
+        $scope.user = user;
+        return user;
+      });
+    };*/
 
+  $scope.user = IdentityService.currentUser;
   /*$scope.updateUser();*/
 
   /*  $scope.currentUser = null;
