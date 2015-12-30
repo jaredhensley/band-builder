@@ -10,16 +10,11 @@ function auth(req, res, next) {
 }
 
 module.exports = function (app) {
-  app.get('/test', function (req, res, next) {
-    res.render('shithedad');
-  });
+
   app.post('/api/login', passport.authenticate('local'), authCtrl.login);
-  app.get('/api/loggedin', auth, function (req, res) {
-    return res.json(req.user);
-  });
 
   app.get('/api/logout', function (req, res) {
     req.logout();
-    return res.status(200).end();
+    return res.status(200).end(req.user);
   });
 }

@@ -38,7 +38,7 @@ angular.module('myApp').service('UserService', function ($http, $q, IdentityServ
       method: 'GET',
       url: '/api/logout'
     }).then(function (res) {
-      IdentityService.currentUser = undefined;
+      IdentityService.currentUser = res;
       dfd.resolve(res.data);
     });
     return dfd.promise;
