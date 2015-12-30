@@ -6,14 +6,14 @@ angular.module('myApp').service('UserService', function ($http, $q, IdentityServ
 
 
   //  var loggedInUser;
-  this.loggedin = function () {
+  /*this.loggedin = function () {
     return $http({
       method: 'GET',
       url: '/api/user'
     }).then(function (res) {
       return res.data; //!!!
     });
-  }
+  }*/
 
   this.login = function (user) {
     var dfd = $q.defer();
@@ -61,15 +61,15 @@ angular.module('myApp').service('UserService', function ($http, $q, IdentityServ
   }
 
   // user GET
-  this.getUser = function (user) {
-    return $http({
-      method: 'GET',
-      url: '/api/users/' + user,
-      data: user
-    }).then(function (user) {
-      return user;
-    });
-  }
+  /*  this.getUser = function (user) {
+      return $http({
+        method: 'GET',
+        url: '/api/users/' + user,
+        data: user
+      }).then(function (user) {
+        return user;
+      });
+    }*/
 
   // user PUT
   this.editUser = function (userID, userEdit) {
@@ -80,12 +80,12 @@ angular.module('myApp').service('UserService', function ($http, $q, IdentityServ
     });
   }
 
-  this.getTheUser = function () {
-    return $http({
-      method: 'GET',
-      url: '/api/user'
-    }).then(function (res) {
-      return res.data;
-    });
-  }
+  /*  this.getTheUser = function () {
+      return $http({
+        method: 'GET',
+        url: '/api/user'
+      }).then(function (res) {
+        return res.data;
+      });
+    }*/
 });

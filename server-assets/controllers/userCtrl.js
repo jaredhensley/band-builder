@@ -2,12 +2,6 @@ var User = require('../models/user');
 
 module.exports = {
 
-  render: function (req, res) {
-    // If user is not connected render the signup page, otherwise redirect the user back to the main application page
-    console.log('testtttt LOLOLOLOLOLOLDLSFKJSDLKFJSDLK:FJDSLKFJSDLKFJSDLFK:JSDFLKSDJFLK:SDJFLDSKJ');
-    res.render('shithead');
-  },
-
   // create single user
   registerUser: function (req, res) {
     User.findOne({

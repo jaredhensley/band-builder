@@ -11,7 +11,6 @@ function auth(req, res, next) {
 
 module.exports = function (app) {
 
-  app.get('/signup', userCtrl.render);
   app.post('/api/users', userCtrl.registerUser);
   app.get('/api/users/:id', userCtrl.getUser);
   app.get('/api/users', userCtrl.getUsers);

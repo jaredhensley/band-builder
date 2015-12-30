@@ -12,7 +12,13 @@ module.exports = function () {
     // Use the 'User' model 'findOne' method to find a user with the current username
     User.findOne({
       username: username
-    }, function (err, user) {
+    }).populate({
+      path: 'groups',
+      populate: {
+        path: 'admin',
+        model: 'User'
+      }
+    }).exec(function (err, user) {
       // If an error occurs continue to the next middleware
       if (err) {
         return done(err);
