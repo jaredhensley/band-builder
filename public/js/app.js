@@ -17,15 +17,7 @@ angular.module('myApp', ['ui.router', 'ui.bootstrap'])
     })
     .state('logout', {
       url: '/logout',
-      controller: function (UserService, $state, $scope, IdentityService) {
-        UserService.logout().then(function (res) {
-          console.log('LOGING OUT');
-          window.user = null;
-          IdentityService.currentUser = res;
-          $scope.updateUser();
-          $state.go('login');
-        });
-      }
+      controller: 'logoutCtrl'
     })
     .state('register', {
       url: '/register',

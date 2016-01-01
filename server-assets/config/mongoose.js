@@ -10,8 +10,8 @@ module.exports = function () {
   var db = mongoose.connect('mongodb://localhost/personalproject');
 
   // Load the application models 
-  require('../models/group');
-  require('../models/user');
+  require('../models/group.server.model');
+  require('../models/user.server.model');
 
   // Return the Mongoose connection instance
   return db;

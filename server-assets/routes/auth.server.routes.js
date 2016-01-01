@@ -1,4 +1,4 @@
-var authCtrl = require('../controllers/authCtrl');
+var authCtrl = require('../controllers/auth.server.controller');
 var passport = require('passport');
 
 function auth(req, res, next) {

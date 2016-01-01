@@ -1,5 +1,5 @@
-var Group = require('../models/group');
-var User = require('../models/user');
+var Group = require('../models/group.server.model');
+var User = require('../models/user.server.model');
 var geocoder = require('../node-geosearch');
 
 module.exports = {

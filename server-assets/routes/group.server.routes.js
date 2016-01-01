@@ -1,4 +1,4 @@
-var groupCtrl = require('../controllers/groupCtrl');
+var groupCtrl = require('../controllers/group.server.controller');
 var passport = require('passport');
 
 module.exports = function (app) {
