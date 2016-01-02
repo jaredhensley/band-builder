@@ -77,5 +77,11 @@ module.exports = {
         res.status(500).send(err);
       }
     });
+  },
+
+  currentUser: function (req, res) {
+    if (!req.user) return res.status(401).send('user not logged in');
+    console.log(req.user);
+    return res.json(req.user);
   }
 }

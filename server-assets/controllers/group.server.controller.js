@@ -152,6 +152,16 @@ module.exports = {
   approveUser: function (req, res) {
     console.log("TESTTTT");
     console.log(req.body);
+  },
+
+  hasAuthorization: function (req, res, next) {
+    console.log('HIIIII');
+    if (req.body.admin !== req.user.id) {
+      return res.status(403).send({
+        message: 'User is not authorized'
+      });
+    }
+    next();
   }
 
 }

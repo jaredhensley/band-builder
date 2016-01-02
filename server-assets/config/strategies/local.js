@@ -11,7 +11,8 @@ module.exports = function () {
   passport.use(new LocalStrategy(function (username, password, done) {
     // Use the 'User' model 'findOne' method to find a user with the current username
     User.findOne({
-      username: username
+      username: username,
+      password: password
     }).populate({
       path: 'groups',
       populate: {

@@ -3,7 +3,7 @@ angular.module('myApp', ['ui.router', 'ui.bootstrap'])
 
 .config(function ($urlRouterProvider, $stateProvider, $httpProvider) {
 
-  /*$urlRouterProvider.otherwise('/');*/
+  $urlRouterProvider.otherwise('/');
 
   $stateProvider
     .state('home', {
@@ -38,24 +38,12 @@ angular.module('myApp', ['ui.router', 'ui.bootstrap'])
     .state('search', {
       url: '/search',
       templateUrl: '../templates/searchTmpl.html',
-      controller: 'searchCtrl',
-      /*  resolve: {
-          //returns logged in user to controller to be put on scope
-          user: function (UserService) {
-            return UserService.loggedin();
-          }
-        }*/
+      controller: 'searchCtrl'
     })
     .state('editUser', {
       url: '/editUser/:id',
       templateUrl: '../templates/editUserTmpl.html',
-      controller: 'editUserCtrl',
-      /* resolve: {
-         //returns logged in user to controller to be put on scope
-         user: function (UserService) {
-           return UserService.loggedin();
-         }
-       }*/
+      controller: 'editUserCtrl'
     })
     .state('groupView', {
       url: '/group/:id',
