@@ -23,7 +23,10 @@ angular.module('myApp').factory('GroupService', function ($http, $q) {
 
     getGroup: getGroup,
 
-    editGroup: function (id, group) {
+    editGroup: function (id, admin, group) {
+      console.log("ADMIN", admin);
+      console.log("group", group);
+      group.admin = admin;
       console.log(id);
       var dfd = $q.defer();
       console.log(group);

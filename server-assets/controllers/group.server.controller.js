@@ -133,7 +133,7 @@ module.exports = {
   },
 
   joinGroup: function (req, res) {
-    Group.findByIdAndUpdate(req.body.group, {
+    Group.findByIdAndUpdate(req.body.group._id, {
         $addToSet: {
           "pendingUsers": req.body.user
         }
@@ -154,8 +154,7 @@ module.exports = {
     console.log(req.body);
   },
 
-  hasAuthorization: function (req, res, next) {
-    console.log('HIIIII');
+  hasAdminAuthorization: function (req, res, next) {
     if (req.body.admin !== req.user.id) {
       return res.status(403).send({
         message: 'User is not authorized'
