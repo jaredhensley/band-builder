@@ -1,4 +1,4 @@
-angular.module('myApp').controller('groupViewCtrl', function ($scope, GroupService, $stateParams, IdentityService) {
+angular.module('myApp').controller('groupViewCtrl', function ($scope, GroupService, $stateParams) {
 
   GroupService.getGroup($stateParams.id).then(function (result) {
     $scope.group = result.data;

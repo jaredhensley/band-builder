@@ -4,7 +4,6 @@ angular.module('myApp').controller('loginViewCtrl', function ($state, $scope, Us
     UserService.login(credentials).then(function (user) {
       IdentityService.currentUser = user;
       $scope.updateUser();
-      console.log('user!!!!', user);
       $state.go('user');
     })
   }

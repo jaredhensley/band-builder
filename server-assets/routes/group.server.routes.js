@@ -22,9 +22,4 @@ module.exports = function (app) {
   // access endpoints
   app.post('/api/joinGroup', authCtrl.isAuthenticated, groupCtrl.joinGroup);
 
-  /*  app.post('/api/groups', authCtrl.isAuthenticated, groupCtrl.addGroup);
-    app.put('/api/groups/:id', authCtrl.isAuthenticated, groupCtrl.editGroup);
-    app.get('/api/groups', authCtrl.isAuthenticated, groupCtrl.getGroups); // get all groups
-    app.get('/api/groups/:id', authCtrl.isAuthenticated, groupCtrl.getGroup); // single group by group Id
-    app.delete('/api/groups/:id', authCtrl.isAuthenticated, groupCtrl.deleteGroup);*/
 }
