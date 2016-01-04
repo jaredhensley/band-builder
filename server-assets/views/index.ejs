@@ -15,12 +15,12 @@
     <header class="page-header">
       <ul class="nav nav-pills pull-right">
         <li class="active"><a ui-sref="home">Home</a></li>
-        <% if (user) { %>
-          <li><a ui-sref="user">Profile</a></li>
-          <li><a ui-sref="logout">Logout</a></li>
-          <% } else { %>
-            <li><a ui-sref="login">Login</a></li>
-            <% } %>
+
+        <li><a ui-sref="user" ng-show="loggedIn">Profile</a></li>
+        <li><a ui-sref="logout" ng-show="loggedIn">Logout</a></li>
+
+        <li><a ui-sref="login" ng-hide="loggedIn">Login</a></li>
+
       </ul>
       <h3>BandFinder</h3>
     </header>
