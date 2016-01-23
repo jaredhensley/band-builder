@@ -14,6 +14,7 @@ module.exports = function (app) {
     .delete(authCtrl.isAuthenticated, userCtrl.deleteUser);
 
   app.get('/api/user', authCtrl.isAuthenticated, userCtrl.currentUser);
+
   /*app.post('/api/users', authCtrl.isAuthenticated, userCtrl.registerUser);*/
   /*app.get('/api/users/:id', authCtrl.isAuthenticated, userCtrl.getUser);*/
   /*app.get('/api/users', authCtrl.isAuthenticated, userCtrl.getUsers);*/

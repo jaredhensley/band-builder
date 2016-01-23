@@ -74,7 +74,14 @@ angular.module('myApp').controller('groupViewCtrl', function ($scope, GroupServi
   };
 
   $scope.approveUser = function (user) {
-    GroupService.approveUser(user).then(function (user) {
+    console.log(555555, user);
+    console.log($scope.group);
+    var userObj = {
+      userID: user,
+      groupID: $scope.group._id
+    }
+    GroupService.approveUser(userObj).then(function (user) {
+      console.log(666666, user);
       GroupService.getGroup($stateParams.id).then(function (result) {
         $scope.group = result.data;
       });

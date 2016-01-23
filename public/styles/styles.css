@@ -8,19 +8,83 @@ html {
   box-sizing: inherit;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
 .groups-list-top {
   background-color: cornflowerblue;
 }
 
-.jumbotron {
-  background-color: #2E2D88;
-  color: white;
-  /* background-image: url('../images/bandfinder2.jpeg');*/
-  /*
-  background-size: cover;
-*/
+
+/*LOGIN-FORM-VIEW*/
+
+.loginTemp {
+  background: #06283d;
+  height: 100vh;
+  min-height: 600px;
+  position: relative;
 }
 
-.jumbotron img {
-  background-size: cover;
+.login-form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -220px;
+  margin-left: -175px;
+  text-align: center;
+  width: 350px;
+  border-radius: 10px;
+}
+
+.login-form {
+  margin-top: 30px;
+}
+
+.login-input-field {
+  width: 100%;
+  display: block;
+  height: 49px;
+  line-height: 49px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #e0e0e1;
+  padding: 0px 6px;
+  font-size: 13px;
+}
+
+.login-form-header {
+  height: 50px;
+  line-height: 50px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  background-color: white;
+  color: #169cee;
+  font-weight: 700;
+  border-bottom: 1px solid #e0e0e1;
+}
+
+.login-form-footer {
+  background-color: white;
+  height: 40px;
+  line-height: 40px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.login-submit {
+  margin-top: 15px;
+  height: 42px;
+  width: 100%;
+  background-color: #00DB8F;
+  color: white;
+}
+
+.login-logo {
+  height: 80px;
+  width: 80px;
 }

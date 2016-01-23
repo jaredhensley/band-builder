@@ -7,8 +7,8 @@ module.exports = {
   findLocation: function (req, res, next) {
     var limit = req.query.limit || 10;
 
-    // get the max distance or set it to 8 kilometers
-    var maxDistance = req.query.distance || 8;
+    // get the max distance or set it to 20 kilometers
+    var maxDistance = req.query.distance || 20;
 
     // we need to convert the distance to radians
     // the raduis of Earth is approximately 6371 kilometers
@@ -16,14 +16,14 @@ module.exports = {
 
     // get coordinates [ <longitude> , <latitude> ]
     var coords = [];
-
+    // TODO, FIX THIS AND FIGURE OUT WHY I CANT QUERY ALL LOCATIONS
     geocoder.geocode(req.body.search).then(function (res) {
       return [res[0].longitude, res[0].latitude];
     }).then(function (coords) {
       return Group.find({
         'location.loc': {
           $near: coords,
-          $maxDistance: (maxDistance / 69)
+          $maxDistance: (maxDistance / 39)
         }
       }).exec();
     }).then(function (locations) {
@@ -150,8 +150,20 @@ module.exports = {
   },
 
   approveUser: function (req, res) {
-    console.log("TESTTTT");
-    console.log(req.body);
+    Group.findByIdAndUpdate(req.body.groupID, {
+      $addToSet: {
+        users: req.body.userID
+      }
+    }).exec().then(function (group) {
+      Group.findByIdAndUpdate(req.body.groupID, {
+        $pull: {
+          pendingUsers: req.body.userID
+        }
+      }).exec().then(function (updatedGroup) {
+        console.log('UPDATED GROUPPPPPPP', updatedGroup);
+        res.status(201).send(updatedGroup);
+      });
+    });
   },
 
   hasAdminAuthorization: function (req, res, next) {

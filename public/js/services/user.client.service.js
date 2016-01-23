@@ -80,12 +80,13 @@ angular.module('myApp').service('UserService', function ($http, $q, IdentityServ
     });
   }
 
-  /*  this.getTheUser = function () {
-      return $http({
-        method: 'GET',
-        url: '/api/user'
-      }).then(function (res) {
-        return res.data;
-      });
-    }*/
+  this.getCurrentUser = function () {
+    return $http({
+      method: 'GET',
+      url: '/api/user'
+    }).then(function (user) {
+      IdentityService.currentUser = user.data;
+      return user.data;
+    });
+  }
 });

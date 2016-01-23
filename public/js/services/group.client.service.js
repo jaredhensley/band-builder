@@ -34,11 +34,11 @@ angular.module('myApp').factory('GroupService', function ($http, $q) {
       return dfd.promise;
     },
 
-    approveUser: function (userID) {
+    approveUser: function (userObj) {
       return $http({
         method: 'POST',
         url: "/api/groups/approveUser",
-        data: userID
+        data: userObj
       });
     }
 

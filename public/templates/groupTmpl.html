@@ -1,5 +1,4 @@
 <div class="container">
-  {{group}}
   <div class="well well-sm col col-sm-3">
     <h3>Group Name</h3> {{group.nickname}}
   </div>
@@ -45,8 +44,8 @@
   </div>
   <div>
     Users:
-    <div class="well well-sm col col-sm-12" ng-repeat="user in group.users">
-      <div class="well well-sm col col-sm-6">
+    <div class="well well-sm col col-md-12 col-sm-12" ng-repeat="user in group.users">
+      <div class="well well-sm col  col-md-12 col-sm-12">
         <div>
           {{user._id}}
         </div>
@@ -69,21 +68,22 @@
           {{user.genres}}
         </div>
       </div>
-      <div class="well well-sm col col-sm-6">
-        <button>Edit Group</button>
-        <form ng-submit="editGroup(editedGroup)">
-          <div>
-            <select name="" id="" ng-model="editedGroup.public">
-              <option value="public">Public</option>
-              <option value="private">Private</option>
-            </select>
-            <input ng-model="editedGroup.nickname" type="text" placeholder="nickname">
-            <input ng-model="editedGroup.genre" type="text" placeholder="genre">
-            <input ng-model="editedGroup.location" type="text" placeholder="location">
-            <input ng-model="editedGroup.needs" type="text" placeholder="needs">
-          </div>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+    </div>
+    <div class="well well-sm col col-sm-6">
+      <button>Edit Group</button>
+      <form ng-submit="editGroup(editedGroup)">
+        <div>
+          <select name="" id="" ng-model="editedGroup.public">
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+          </select>
+          <input ng-model="editedGroup.nickname" type="text" placeholder="nickname">
+          <input ng-model="editedGroup.genre" type="text" placeholder="genre">
+          <input ng-model="editedGroup.location" type="text" placeholder="location">
+          <input ng-model="editedGroup.needs" type="text" placeholder="needs">
+        </div>
+        <button type="submit">Submit</button>
+      </form>
     </div>
   </div>
+</div>

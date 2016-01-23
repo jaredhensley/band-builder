@@ -26,7 +26,6 @@ angular.module('myApp').service('searchService', function ($http, $q) {
     }).then(function (result) {
       return result;
     });
-
   }
 
 });

@@ -1,4 +1,4 @@
-angular.module('myApp').controller('userViewCtrl', function ($scope, GroupService, IdentityService) {
+angular.module('myApp').controller('userViewCtrl', function ($scope, GroupService, IdentityService, UserService) {
   $scope.IdentityService = IdentityService.currentUser;
   console.log('USER FROM IDENTITY SERVICE', $scope.IdentityService);
   /*$scope.updateUser();*/
@@ -29,8 +29,12 @@ angular.module('myApp').controller('userViewCtrl', function ($scope, GroupServic
   $scope.createGroup = function (newGroup) {
     newGroup.admin = $scope.user._id;
     GroupService.createGroup(newGroup).then(function (result) {
-      $scope.updateUser();
-      $scope.toggleGroupCreate();
+      UserService.getCurrentUser().then(function (user) {
+        console.log(user);
+        $scope.updateUser();
+        $scope.toggleGroupCreate();
+      });
+
     });
   }
 
