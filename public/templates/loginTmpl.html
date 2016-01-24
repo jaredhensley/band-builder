@@ -1,16 +1,38 @@
 <div class="loginTemp">
-  <div class="">LOGINTMPL</div>
 
   <div class="login-form-container">
     <!--<div data-icon="t" class="icon login-logo"></div>-->
     <img src="../images/bandfinder.svg" alt="" class="login-logo">
+
     <form ng-submit="login(loginUser)" class="login-form">
+
       <div class="login-form-header">Access Your Dashboard</div>
-      <input type="text" ng-model="loginUser.username" placeholder="enter username" class="login-input-field">
-      <input type="text" ng-model="loginUser.password" placeholder="enter password" class="login-input-field">
+
+      <div class="login-input-parent">
+        <div class="login-input-label">email</div>
+        <input type="text" ng-model="loginUser.username" placeholder="johnsmith@bandfinder.com" class="login-input-field">
+      </div>
+
+      <div class="login-input-parent">
+        <div class="login-input-label">password</div>
+        <input type="text" ng-model="loginUser.password" placeholder="test123" class="login-input-field">
+      </div>
+
       <div class="login-form-footer">Forget Something?</div>
+
       <button type="submit" class="login-submit">Login</button>
+
     </form>
+
+    <div class="login-social-icons">
+      <span class="login-social-icons-copy">or, login with</span>
+      <i class="flaticon flaticon-facebook29"></i>
+      <i class="flaticon flaticon-soundcloud4"></i>
+      <i class="flaticon flaticon-youtube18"></i>
+    </div>
+
+    <button class="login-register" ui-sref="register">I don't have a BandFinder account</button>
+
   </div>
 
 </div>

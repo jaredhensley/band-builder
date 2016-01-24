@@ -3,9 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>BandFinder</title>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,700italic,300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="styles/flaticon.css">
   <link rel="stylesheet" href="styles/normalize.css" crossorigin="anonymous">
   <link rel="stylesheet" href="fonts/styles.css">
   <link rel="stylesheet" href="styles/styles.css">
@@ -30,7 +32,7 @@
 
   <ui-view></ui-view>
 
-  <!--scripts-->
+  <!--dependencies and sending user to client-->
   <script type="text/javascript">
     window.user = <%- user || 'null' %>;
   </script>

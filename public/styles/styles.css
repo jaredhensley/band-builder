@@ -1,6 +1,9 @@
 html {
   box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
 }
+
+body {}
 
 *,
 *:before,
@@ -24,10 +27,16 @@ html {
 /*LOGIN-FORM-VIEW*/
 
 .loginTemp {
-  background: #06283d;
   height: 100vh;
-  min-height: 600px;
+  overflow: auto;
+  background: #06283d;
   position: relative;
+  min-height: 600px;
+}
+
+.login-header {
+  color: white;
+  font-size: 36px;
 }
 
 .login-form-container {
@@ -45,18 +54,6 @@ html {
   margin-top: 30px;
 }
 
-.login-input-field {
-  width: 100%;
-  display: block;
-  height: 49px;
-  line-height: 49px;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid #e0e0e1;
-  padding: 0px 6px;
-  font-size: 13px;
-}
-
 .login-form-header {
   height: 50px;
   line-height: 50px;
@@ -65,26 +62,116 @@ html {
   background-color: white;
   color: #169cee;
   font-weight: 700;
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
   border-bottom: 1px solid #e0e0e1;
 }
 
+.login-input-parent {}
+
+.login-input-label {
+  width: 25%;
+  background-color: #f9f9fa;
+  border-bottom: 1px solid #e0e0e1;
+  color: #555572;
+  height: 49px;
+  line-height: 49px;
+  float: left;
+}
+
+.login-input-field {
+  width: 75%;
+  float: right;
+  display: block;
+  height: 49px;
+  line-height: 49px;
+  outline: none;
+  border: none;
+  padding: 0px 6px;
+  font-size: 13px;
+  border-bottom: 1px solid #e0e0e1;
+}
+
+.login-input-field:focus {
+  background-color: #f9f9fa;
+  border-left: 1px solid #e0e0e1;
+  font-size: 18px;
+}
+
 .login-form-footer {
+  clear: both;
   background-color: white;
   height: 40px;
   line-height: 40px;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
+  color: #c1c0c9;
+}
+
+.login-form-footer:hover {
+  cursor: pointer;
+  color: #333;
 }
 
 .login-submit {
+  border: none;
+  outline: none;
+  border-radius: 5px;
   margin-top: 15px;
   height: 42px;
   width: 100%;
   background-color: #00DB8F;
   color: white;
+  font-size: 16px;
+}
+
+.login-submit:hover {
+  background-color: #63c166;
 }
 
 .login-logo {
   height: 80px;
   width: 80px;
 }
+
+.login-social-icons {
+  margin-top: 30px;
+  padding: 5px;
+}
+
+.login-social-icons-copy {
+  color: white;
+  font-size: 16px;
+}
+
+.flaticon:before {
+  vertical-align: middle;
+  color: white;
+  padding: 9px;
+  background-color: #1d3c4f;
+  border: 1px solid #1d3c4f;
+  border-radius: 50px;
+  font-size: 22px;
+}
+
+.login-register {
+  margin: 70px auto 40px auto;
+  border-radius: 5px;
+  width: 90%;
+  outline: none;
+  border-style: none;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  height: 42px;
+  line-height: 42px;
+  opacity: .7;
+}
+
+.login-register:hover {
+  font-size: 16px;
+  opacity: 1;
+}
+
+
+/*REGISTRATION-FORM-VIEW*/

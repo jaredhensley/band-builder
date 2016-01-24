@@ -1,4 +1,42 @@
-<div class="container">
+<div class="loginTemp">
+
+  <div class="login-form-container">
+    <!--<div data-icon="t" class="icon login-logo"></div>-->
+    <img src="../images/bandfinder.svg" alt="" class="login-logo">
+
+    <form ng-submit="registerUser(newUser)" class="login-form">
+
+      <div class="login-form-header">Access Your Dashboard</div>
+
+      <div class="login-input-parent">
+        <div class="login-input-label">email</div>
+        <input type="text" ng-model="newUser.email" placeholder="johnsmith@bandfinder.com" class="login-input-field">
+      </div>
+
+      <div class="login-input-parent">
+        <div class="login-input-label">password</div>
+        <input type="text" ng-model="newUser.password" placeholder="test123" class="login-input-field">
+      </div>
+
+      <div class="login-input-parent">
+        <div class="login-input-label">location</div>
+        <input type="text" ng-model="newUser.location" placeholder="city, zip, coords" class="login-input-field">
+      </div>
+
+
+
+      <button type="submit" class="login-submit">Register</button>
+
+    </form>
+
+    <button class="login-register" ui-sref="login">I have an account already!</button>
+
+  </div>
+
+</div>
+
+
+<!--<div class="container">
   <div class="page-header">
     <h1>New User Registration <small>find a band today</small></h1>
   </div>
@@ -54,4 +92,4 @@
 </div>
 </form>
 </div>
-</div>
+</div>-->

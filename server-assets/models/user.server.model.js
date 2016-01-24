@@ -18,6 +18,17 @@ var schema = new mongoose.Schema({
   groups: [{
     type: String,
     ref: 'Group'
+  }],
+  instruments: [{
+    type: String
+  }],
+  newInvites: [{
+    type: String,
+    ref: 'Group'
+  }],
+  requestForMembership: [{
+    type: String,
+    ref: 'Group'
   }]
 
 });
