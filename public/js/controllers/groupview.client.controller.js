@@ -1,7 +1,8 @@
-angular.module('myApp').controller('groupViewCtrl', function ($scope, MainService, GroupService, $stateParams) {
+angular.module('myApp').controller('groupViewCtrl', function ($scope, GroupService, $stateParams) {
 
   GroupService.getGroup($stateParams.id).then(function (result) {
     $scope.group = result.data;
+    console.log($scope.group.pendingUsers);
   });
 
   var splitText = function (str) {
@@ -17,13 +18,9 @@ angular.module('myApp').controller('groupViewCtrl', function ($scope, MainServic
     }
     if (updateObj.public) {
       if (updateObj.public === 'public') {
-
         updateObj.public = true;
-
       } else {
-
         updateObj.public = false;
-
       }
     }
 
@@ -69,12 +66,27 @@ angular.module('myApp').controller('groupViewCtrl', function ($scope, MainServic
       updateObj.needs = filterUpdate($scope.group.needs, updateObj.needs);
     }
     console.log('updateObj', updateObj);
-    GroupService.editGroup($scope.group._id, updateObj).then(function (group) {
+    GroupService.editGroup($scope.group._id, $scope.group.admin, updateObj).then(function (group) {
       $scope.group = group;
       console.log('result', group);
       console.log(group);
     });
   };
+
+  $scope.approveUser = function (user) {
+    console.log(555555, user);
+    console.log($scope.group);
+    var userObj = {
+      userID: user,
+      groupID: $scope.group._id
+    }
+    GroupService.approveUser(userObj).then(function (user) {
+      console.log(666666, user);
+      GroupService.getGroup($stateParams.id).then(function (result) {
+        $scope.group = result.data;
+      });
+    });
+  }
 
 
 });

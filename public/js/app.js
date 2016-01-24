@@ -1,7 +1,7 @@
 angular.module('myApp', ['ui.router', 'ui.bootstrap'])
 
 
-.config(function ($urlRouterProvider, $stateProvider) {
+.config(function ($urlRouterProvider, $stateProvider, $httpProvider) {
 
   $urlRouterProvider.otherwise('/');
 
@@ -15,6 +15,10 @@ angular.module('myApp', ['ui.router', 'ui.bootstrap'])
       templateUrl: '../templates/loginTmpl.html',
       controller: 'loginViewCtrl'
     })
+    .state('logout', {
+      url: '/logout',
+      controller: 'logoutCtrl'
+    })
     .state('register', {
       url: '/register',
       templateUrl: '../templates/registerTmpl.html',
@@ -23,17 +27,28 @@ angular.module('myApp', ['ui.router', 'ui.bootstrap'])
     .state('user', {
       url: '/user/:id',
       templateUrl: '../templates/userTmpl.html',
-      controller: 'userViewCtrl'
+      controller: 'userViewCtrl',
+      /*  resolve: {
+          //returns logged in user to controller to be put on scope
+          user: function (UserService) {
+            return UserService.loggedin();
+          }
+        }*/
+    })
+    .state('search', {
+      url: '/search',
+      templateUrl: '../templates/searchTmpl.html',
+      controller: 'searchCtrl'
     })
     .state('editUser', {
       url: '/editUser/:id',
       templateUrl: '../templates/editUserTmpl.html',
       controller: 'editUserCtrl'
     })
-    // todo  
     .state('groupView', {
       url: '/group/:id',
       templateUrl: '../templates/groupTmpl.html',
       controller: 'groupViewCtrl'
     });
+
 });

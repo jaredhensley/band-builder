@@ -4,6 +4,7 @@ var schema = new mongoose.Schema({
 
   email: String,
   username: String,
+  password: String,
   location: String,
   bio: String,
   skill: {
@@ -17,8 +18,23 @@ var schema = new mongoose.Schema({
   groups: [{
     type: String,
     ref: 'Group'
+  }],
+  instruments: [{
+    type: String
+  }],
+  newInvites: [{
+    type: String,
+    ref: 'Group'
+  }],
+  requestForMembership: [{
+    type: String,
+    ref: 'Group'
   }]
 
 });
+
+
+
+
 
 module.exports = mongoose.model('User', schema);

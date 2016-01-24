@@ -7,10 +7,6 @@ angular.module('myApp').factory('GroupService', function ($http, $q) {
     });
   };
 
-  // group CRUDS
-
-  // group POST
-
   return {
 
     createGroup: function (newGroup) {
@@ -23,9 +19,9 @@ angular.module('myApp').factory('GroupService', function ($http, $q) {
 
     getGroup: getGroup,
 
-    editGroup: function (id, group) {
+    editGroup: function (id, admin, group) {
+      group.admin = admin;
       var dfd = $q.defer();
-      console.log(group);
       $http({
         method: 'PUT',
         url: '/api/groups/' + id,
@@ -36,6 +32,14 @@ angular.module('myApp').factory('GroupService', function ($http, $q) {
         });
       });
       return dfd.promise;
+    },
+
+    approveUser: function (userObj) {
+      return $http({
+        method: 'POST',
+        url: "/api/groups/approveUser",
+        data: userObj
+      });
     }
 
   }

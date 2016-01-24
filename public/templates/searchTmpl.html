@@ -1,0 +1,32 @@
+<div class="container">
+  <form ng-submit="findNearby(searchLocation)">
+    <input type="text" placeholder="enter a location" ng-model="searchLocation">
+    <button type="submit">Search</button>
+  </form>
+  <div ng-repeat="group in locations" style="border: 1px solid black">
+    <div>
+      Group name: {{group.nickname}}
+    </div>
+    <div>
+      City: {{group.location.city}}
+    </div>
+    <div>
+      Coords: {{group.location.lat}} || {{group.location.lng}}
+    </div>
+    <div>
+      Zipcode: {{group.location.zipcode}}
+    </div>
+    <div>
+      Admin: {{group.admin}}
+    </div>
+    <div>
+      Needs:
+      <span ng-repeat="need in group.needs">{{need}}&nbsp</span>
+    </div>
+    <div>
+      Genres:
+      <span ng-repeat="genre in group.genre">{{genre}}&nbsp</span>
+    </div>
+    <button ng-if="user._id" ng-click="joinGroup(user._id, group)">Join Group!</button>
+  </div>
+</div>

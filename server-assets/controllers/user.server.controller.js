@@ -1,14 +1,28 @@
-var User = require('../models/user');
+var User = require('../models/user.server.model');
 
 module.exports = {
 
   // create single user
-  createUser: function (req, res) {
-    var user = new User(req.body);
-    user.save().then(function (user) {
-      console.log(user);
-      res.status(201).send(user);
-    })
+  registerUser: function (req, res) {
+    User.findOne({
+      username: req.body.username
+    }, function (err, user) {
+      if (user) {
+        res.send(null);
+      } else {
+        var user = new User(req.body);
+        user.save().then(function (user) {
+          req.login(user, function (err) {
+            if (err) {
+              return next(err);
+            } else {
+              res.status(200).send(user);
+            }
+          });
+          res.status(201).send(user);
+        });
+      }
+    });
   },
 
   // query for single user
@@ -40,7 +54,9 @@ module.exports = {
   editUser: function (req, res) {
     User.findOneAndUpdate({
       _id: req.params.id
-    }, req.body, function (err, doc) {
+    }, req.body, {
+      new: true
+    }, function (err, doc) {
       if (!err) {
         console.log(doc);
         res.status(200).send(doc);
@@ -60,7 +76,12 @@ module.exports = {
       } else {
         res.status(500).send(err);
       }
-
     });
+  },
+
+  currentUser: function (req, res) {
+    if (!req.user) return res.status(401).send('user not logged in');
+    console.log(req.user);
+    return res.json(req.user);
   }
 }

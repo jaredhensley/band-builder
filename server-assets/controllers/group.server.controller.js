@@ -1,8 +1,37 @@
-var Group = require('../models/group');
-var User = require('../models/user');
+var Group = require('../models/group.server.model');
+var User = require('../models/user.server.model');
 var geocoder = require('../node-geosearch');
 
 module.exports = {
+
+  findLocation: function (req, res, next) {
+    var limit = req.query.limit || 10;
+
+    // get the max distance or set it to 20 kilometers
+    var maxDistance = req.query.distance || 20;
+
+    // we need to convert the distance to radians
+    // the raduis of Earth is approximately 6371 kilometers
+    //    maxDistance /= 6371;
+
+    // get coordinates [ <longitude> , <latitude> ]
+    var coords = [];
+    // TODO, FIX THIS AND FIGURE OUT WHY I CANT QUERY ALL LOCATIONS
+    geocoder.geocode(req.body.search).then(function (res) {
+      return [res[0].longitude, res[0].latitude];
+    }).then(function (coords) {
+      return Group.find({
+        'location.loc': {
+          $near: coords,
+          $maxDistance: (maxDistance / 39)
+        }
+      }).exec();
+    }).then(function (locations) {
+      return res.json(locations);
+    }).catch(function (err) {
+      return res.status(500).json(err);
+    });
+  },
 
   // creates a new group from admin account
   addGroup: function (req, res) {
@@ -15,7 +44,8 @@ module.exports = {
         lng: results[0].longitude,
         city: results[0].city,
         zipcode: results[0].zipcode,
-        address: results[0].formattedAddress
+        address: results[0].formattedAddress,
+        loc: [results[0].longitude, results[0].latitude]
       };
 
       // make a new group based on req.body
@@ -44,7 +74,7 @@ module.exports = {
           lat: results[0].latitude,
           lng: results[0].longitude,
           city: results[0].city,
-          zipcode: results[0].zipcode,
+          /* zipcode: results[0].zipcode,*/
           address: results[0].formattedAddress
         };
       }).then(function () {
@@ -53,10 +83,9 @@ module.exports = {
           new: true
         }, function (err, group) {
           if (!err) {
-            console.log(group);
             res.status(200).send(group);
           } else {
-            console.log(err);
+            console.log(69696969696, err);
             res.status(500).send(err);
           }
         });
@@ -68,26 +97,12 @@ module.exports = {
         new: true
       }, function (err, group) {
         if (!err) {
-          console.log(group);
           res.status(200).send(group);
         } else {
-          console.log(err);
           res.status(500).send(err);
         }
       });
     }
-
-    /*    Group.findByIdAndUpdate(req.params.id, req.body, {
-          new: true
-        }, function (err, group) {
-          if (!err) {
-            console.log(group);
-            res.status(200).send(group);
-          } else {
-            console.log(err);
-            res.status(500).send(err);
-          }
-        });*/
   },
 
   getGroups: function (req, res) {
@@ -110,13 +125,54 @@ module.exports = {
       _id: req.params.id
     }, function (err, result) {
       if (!err) {
-        console.log(result);
         res.status(200).send(result);
       } else {
-        console.log(err);
         res.status(500).send(err);
       }
     });
+  },
+
+  joinGroup: function (req, res) {
+    Group.findByIdAndUpdate(req.body.group._id, {
+        $addToSet: {
+          "pendingUsers": req.body.user
+        }
+      }, {
+        new: true
+      },
+      function (err, group) {
+        if (!err) {
+          res.status(200).send(group);
+        } else {
+          res.status(500).send(err);
+        }
+      });
+  },
+
+  approveUser: function (req, res) {
+    Group.findByIdAndUpdate(req.body.groupID, {
+      $addToSet: {
+        users: req.body.userID
+      }
+    }).exec().then(function (group) {
+      Group.findByIdAndUpdate(req.body.groupID, {
+        $pull: {
+          pendingUsers: req.body.userID
+        }
+      }).exec().then(function (updatedGroup) {
+        console.log('UPDATED GROUPPPPPPP', updatedGroup);
+        res.status(201).send(updatedGroup);
+      });
+    });
+  },
+
+  hasAdminAuthorization: function (req, res, next) {
+    if (req.body.admin !== req.user.id) {
+      return res.status(403).send({
+        message: 'User is not authorized'
+      });
+    }
+    next();
   }
 
 }

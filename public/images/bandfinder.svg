@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="254px" height="254px" viewBox="0 0 254 254" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>Slice 1</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs>
+        <path id="path-1" d="M127,254 C197.140167,254 254,197.140167 254,127 C254,56.8598333 197.140167,0 127,0 C56.8598333,0 0,56.8598333 0,127 C0,197.140167 56.8598333,254 127,254 Z"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Oval-1">
+            <use fill="#FFED00" fill-rule="evenodd" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+            <use fill="none" xlink:href="#path-1"></use>
+        </g>
+        <path d="M127,34.5 L127,214.5" id="Line" stroke="#000000" stroke-width="6" stroke-linecap="round" sketch:type="MSShapeGroup"></path>
+        <path d="M182,34 L127,34" id="Line" stroke="#000000" stroke-width="6" stroke-linecap="round" sketch:type="MSShapeGroup"></path>
+        <path d="M169,101 L127,101" id="Line" stroke="#000000" stroke-width="6" stroke-linecap="round" sketch:type="MSShapeGroup"></path>
+        <path d="M63,214 C134.222477,214.000023 126.777395,148.854323 126.777395,148.854323 C126.777395,148.854323 129.454861,100.999984 72.3891268,101 M72,101 C108.72409,101.000013 104.885219,62.9503125 104.885219,62.9503125 C104.885219,62.9503125 106.265788,34.9999907 76.8412685,35 M63,78 C83.0313217,78.0000053 80.9373924,63.0107292 80.9373924,63.0107292 C80.9373924,63.0107292 81.6904296,51.9999963 65.6406919,52" id="Path-8" stroke="#000000" stroke-width="6" stroke-linecap="round" sketch:type="MSShapeGroup" transform="translate(95.000000, 124.500000) scale(-1, 1) translate(-95.000000, -124.500000) "></path>
+    </g>
+</svg>

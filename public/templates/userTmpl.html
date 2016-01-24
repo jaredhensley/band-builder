@@ -1,5 +1,4 @@
 <div class="container">
-
   <div>
     <a ui-sref="editUser({id: user._id})">Edit User Info</a>
   </div>
@@ -30,7 +29,7 @@
         <h3>Active Groups:</h3>
         <hr>
       </div>
-      <div ng-show="showGroup" ng-repeat="group in groups">
+      <div ng-show="showGroup" ng-repeat="group in user.groups">
         <a ui-sref="groupView({id: group._id})">View Group</a> {{group._id}}
         <div>
           Group name: {{group.nickname}}

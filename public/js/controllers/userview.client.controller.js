@@ -1,4 +1,11 @@
-angular.module('myApp').controller('userViewCtrl', function ($scope, MainService, GroupService) {
+angular.module('myApp').controller('userViewCtrl', function ($scope, GroupService, IdentityService, UserService) {
+  $scope.IdentityService = IdentityService.currentUser;
+  console.log('USER FROM IDENTITY SERVICE', $scope.IdentityService);
+  /*$scope.updateUser();*/
+  //    $scope.user = user;
+  /*
+    console.log('RESOLVED VALUE', user);
+  */
 
   // initial state of ngShow of group creation panel
   $scope.showGroupCreate = false;
@@ -22,18 +29,15 @@ angular.module('myApp').controller('userViewCtrl', function ($scope, MainService
   $scope.createGroup = function (newGroup) {
     newGroup.admin = $scope.user._id;
     GroupService.createGroup(newGroup).then(function (result) {
-      console.log('this is result from creating group', result);
-      console.log('user ID in create group ctrl function', $scope.user._id);
-      $scope.getUser($scope.user._id);
-      $scope.toggleGroupCreate();
+      UserService.getCurrentUser().then(function (user) {
+        console.log(user);
+        $scope.updateUser();
+        $scope.toggleGroupCreate();
+      });
+
     });
   }
 
-  /*  $scope.getGroups = function () {
-      MainService.getGroups().then(function (result) {
-        console.log(result);
-        $scope.groups = result;
-      });
-    }*/
+
 
 });
