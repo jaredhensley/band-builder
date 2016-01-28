@@ -1,36 +1,104 @@
-<div class="container">
-  <div>
-    <a ui-sref="editUser({id: user._id})">Edit User Info</a>
+<div class="background-nav">
+  <div class="container">
+    <nav class="nav-wrapper">
+      <img class="bandfinder-logo" src="../images/bandfinder.svg" alt="">
+      <p class="user-loggedin">test{{user.email}}</p>
+    </nav>
   </div>
-  <div class="row">
-    <div class="user-wells well well-sm col-sm-3">
+</div>
+
+
+<div class="container">
+
+  <!--SECTION1-->
+  <div class="section row">
+    <section class="user-avatar col col-sm-12 col-md-3">
+      <img class="avatar-image img-responsive img-rounded" src="http://lorempixel.com/150/150/people" alt="">
+    </section>
+
+    <section class="user-details col col-sm-12 col-md-9">
+      <div class="details-sub-left col col-sm-12 col-md-6">
+        <div class="panel">User ID: {{user._id}}</div>
+        <div class="panel">Username: {{user.username}}</div>
+        <div class="panel">Email: {{user.email}}</div>
+      </div>
+      <div class="details-sub-right col col-sm-12 col-md-6">
+        <div class="panel">Skill Level: {{user.skill}}</div>
+        <div class="panel">Genres:<span ng-repeat="genre in user.genres ">{{genre}}</span></div>
+        <div class="panel">Location: {{user.location}}</div>
+      </div>
+    </section>
+  </div>
+
+
+  <!--SECTION2-->
+  <div class="section row section2">
+    <section class="col col-sm-12 col-md-3 music-parent" style="background-color: red">
+      <div class="music-filler">
+        <iframe width="100%" height="200px" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/181668022&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+      </div>
+    </section>
+
+    <section class="user-bio col col-sm-12 col-md-9" style="background-color: green">
+      <div class="test-well well well-lg">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet ut, illo fugit quas hic perferendis, tempore laborum enim dolorem repellendus vitae nihil, harum magni unde corporis veritatis nisi eaque!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores commodi quod doloribus, consequatur temporibus cupiditate adipisci recusandae rerum dolorum minima mollitia autem provident, animi dignissimos perferendis velit aspernatur. Accusamus, modi!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam earum reprehenderit, inventore ad, ipsum quod nobis voluptatibus ratione, commodi itaque aliquam? Mollitia veritatis, rem odit dolore dolorum illo. Consequuntur, eligendi?</div>
+    </section>
+  </div>
+
+  <!--SECTION3-->
+  <div class="section section3 ">
+    <section class="user-avatar ">
+      <div class="user-avatar ">
+        <img class="avatar-image " src=http://lorempixel.com/150/150/city alt=" ">
+        <button class="avatar-button ">Change</button>
+      </div>
+    </section>
+
+
+    <section class="user-details ">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam quia nihil vero praesentium sit, debitis, fugit pariatur repellat. Mollitia sequi, minus repellat facere optio debitis aperiam nihil harum aliquam quis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum cumque eaque atque delectus quod ad temporibus aliquam consectetur expedita magnam ipsum at nihil beatae reiciendis non, consequuntur, doloribus inventore fugiat.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est voluptate vel laboriosam quidem alias voluptas perferendis eum labore, vero placeat quod accusamus cumque ipsam, saepe ullam itaque veritatis consectetur odit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore esse, quis aut animi. Iusto consectetur ipsam blanditiis, praesentium magni consequuntur rerum, dolor unde, impedit veritatis maxime dicta atque quae eveniet.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore quas, voluptates minima debitis in laborum quisquam ea expedita cum amet, facere consectetur reiciendis autem ut, id deserunt quaerat officiis reprehenderit! lorem
+    </section>
+  </div>
+
+</div>
+
+
+
+
+
+<!--<div class="container ">
+  <div>
+    <a ui-sref="editUser({id: user._id}) ">Edit User Info</a>
+  </div>
+  <div class="row ">
+    <div class="user-wells well well-sm col-sm-3 ">
       <h3>Id:</h3> {{user._id}}
     </div>
-    <div class="user-wells well well-sm col-sm-3">
+    <div class="user-wells well well-sm col-sm-3 ">
       <h3>Username:</h3> {{user.username}}
     </div>
-    <div class="user-wells well well-sm col-sm-3">
+    <div class="user-wells well well-sm col-sm-3 ">
       <h3>Email:</h3> {{user.email}}
     </div>
-    <div class="user-wells well well-sm col-sm-3">
+    <div class="user-wells well well-sm col-sm-3 ">
       <h3>Skill Level:</h3> {{user.skill}}
     </div>
-    <div class="user-wells well well-sm col-sm-8">
+    <div class="user-wells well well-sm col-sm-8 ">
       <h3>Biography:</h3> {{user.bio}}
     </div>
-    <div class="user-wells well well-sm col-sm-4">
+    <div class="user-wells well well-sm col-sm-4 ">
       <h3>Genres:</h3>
-      <span ng-repeat="genre in user.genres">{{genre}}</span>
+      <span ng-repeat="genre in user.genres ">{{genre}}</span>
     </div>
 
-    <div class="well well-sm col-sm-12">
-      <div class="group-list-top">
-        <button ng-click="toggleGroups()">Toggle</button>
+    <div class="well well-sm col-sm-12 ">
+      <div class="group-list-top ">
+        <button ng-click="toggleGroups() ">Toggle</button>
         <h3>Active Groups:</h3>
         <hr>
       </div>
-      <div ng-show="showGroup" ng-repeat="group in user.groups">
-        <a ui-sref="groupView({id: group._id})">View Group</a> {{group._id}}
+      <div ng-show="showGroup " ng-repeat="group in user.groups ">
+        <a ui-sref="groupView({id: group._id}) ">View Group</a> {{group._id}}
         <div>
           Group name: {{group.nickname}}
         </div>
@@ -53,29 +121,29 @@
         <hr>
       </div>
     </div>
-    <!--end active groups div-->
+
   </div>
-  <!--end row-->
 
-  <div class="col col-sm-12 well well-sm">
-    <button ng-click="toggleGroupCreate()">Toggle Group Creation</button>
 
-    <form ng-show="showGroupCreate" ng-submit="createGroup(newGroup)">
-      <select name="" id="" ng-model="newGroup.public">
-        <option value="true">Public</option>
-        <option value="false">Private</option>
+  <div class="col col-sm-12 well well-sm ">
+    <button ng-click="toggleGroupCreate() ">Toggle Group Creation</button>
+
+    <form ng-show="showGroupCreate " ng-submit="createGroup(newGroup) ">
+      <select name=" " id=" " ng-model="newGroup.public ">
+        <option value="true ">Public</option>
+        <option value="false ">Private</option>
       </select>
       <br>
-      <input type="text" ng-model="newGroup.nickname" placeholder="group name">
+      <input type="text " ng-model="newGroup.nickname " placeholder="group name ">
       <br>
-      <input type="text" ng-model="newGroup.location" placeholder="group location">
+      <input type="text " ng-model="newGroup.location " placeholder="group location ">
       <br>
-      <input type="text" ng-model="newGroup.genre" placeholder="music genre">
+      <input type="text " ng-model="newGroup.genre " placeholder="music genre ">
       <br>
-      <input type="text" ng-model="newGroup.needs" placeholder="group needs">
+      <input type="text " ng-model="newGroup.needs " placeholder="group needs ">
       <br>
-      <button type="submit">Create Group</button>
+      <button type="submit ">Create Group</button>
     </form>
 
   </div>
-</div>
+</div>-->
