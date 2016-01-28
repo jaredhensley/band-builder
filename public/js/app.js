@@ -1,4 +1,4 @@
-angular.module('myApp', ['ui.router', 'ui.bootstrap'])
+angular.module('myApp', ['ui.router'])
 
 
 .config(function ($urlRouterProvider, $stateProvider, $httpProvider) {
@@ -6,23 +6,24 @@ angular.module('myApp', ['ui.router', 'ui.bootstrap'])
   $urlRouterProvider.otherwise('/');
 
   $stateProvider
-    .state('home', {
-      url: '/',
-      templateUrl: '../templates/homeTmpl.html',
-    })
+  /*    .state('home', {
+        url: '/',
+        templateUrl: '../templates/homeTmpl.html',
+      })*/
     .state('login', {
-      url: '/login',
-      templateUrl: '../templates/loginTmpl.html',
-      controller: 'loginViewCtrl'
+    url: '/',
+    templateUrl: '../templates/loginTmpl.html',
+    controller: 'loginViewCtrl'
+  })
+
+  .state('register', {
+      url: '/register',
+      templateUrl: '../templates/registerTmpl.html',
+      controller: 'registerViewCtrl'
     })
     .state('logout', {
       url: '/logout',
       controller: 'logoutCtrl'
-    })
-    .state('register', {
-      url: '/register',
-      templateUrl: '../templates/registerTmpl.html',
-      controller: 'registerViewCtrl'
     })
     .state('user', {
       url: '/user/:id',
